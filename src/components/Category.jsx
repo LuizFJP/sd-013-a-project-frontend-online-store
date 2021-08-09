@@ -23,7 +23,7 @@ export default class Category extends React.Component {
     return (
       <div>
         <ul>
-          { categories.map((category) => <li data-testid="" key={ category.id }>{category.name}</li>)}
+          { categories.map((cat) => <li data-testid="" key={ cat.id }>{cat.name}</li>)}
         </ul>
       </div>
     );

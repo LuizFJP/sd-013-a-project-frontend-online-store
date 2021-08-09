@@ -1,3 +1,4 @@
+// requisito 2
 import React from 'react';
 
 class MainPage extends React.Component {
@@ -14,5 +15,4 @@ class MainPage extends React.Component {
     );
   }
 }
-
 export default MainPage;

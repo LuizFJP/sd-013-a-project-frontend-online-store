@@ -3,20 +3,20 @@ import * as api from '../services/api';
 
 class Categories extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       categories: [],
-    }
+    };
   }
 
   componentDidMount() {
-  console.log('entrou no didmount')
-   this.fetchList();
+    console.log('entrou no didmount');
+    this.fetchList();
   }
 
   fetchList = async () => {
-    console.log('entrou no fetch')
+    console.log('entrou no fetch');
     const listOfCategories = await api.getCategories();
     console.log(listOfCategories);
     this.setState({
@@ -25,22 +25,24 @@ class Categories extends Component {
   }
 
   render() {
-
     const { categories } = this.state;
 
-    return(
+    return (
       <ul>
-      { categories.map((category) => (
-      <li data-testid="category" 
-      key={category.id}>
-        {category.name}</li>))}
+        { categories.map((category) => (
+          <li
+            data-testid="category"
+            key={ category.id }
+          >
+            {category.name}
+          </li>))}
       </ul>
       // <div>
       // <p>Teste</p>
 
-      // {console.log('entrou no render')}
-      // </div>
-    )
+    // {console.log('entrou no render')}
+    // </div>
+    );
   }
 }
 

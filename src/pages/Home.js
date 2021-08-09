@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ProductList extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <p data-testid="home-initial-message">
@@ -10,4 +10,4 @@ class ProductList extends React.Component {
   }
 }
 
-export default ProductList;
+export default Home;

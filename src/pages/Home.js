@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Categories from '../components/Categories';
 
 class Home extends Component {
   render() {
     return (
-      <header>
-        <input
-          className="search-field"
-          type="text"
-          name="search-field"
-          id="search-field"
-          placeholder="Digite aqui"
-        />
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">Cart</Link>
-      </header>
+      <>
+        <header>
+          <input
+            className="search-field"
+            type="text"
+            name="search-field"
+            id="search-field"
+            placeholder="Digite aqui"
+          />
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">Cart</Link>
+        </header>
+        <Categories />
+      </>
     );
   }
 }

@@ -1,9 +1,16 @@
 import React from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+
+import Home from './components/Home';
 
 class App extends React.Component {
   render() {
     return (
-      <h1>oi</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={ Home } />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

@@ -18,6 +18,24 @@ class Details extends Component {
     this.GetDetails();
   }
 
+  setLocalStorage = (id, title, price) => {
+    const product = { id, title, price, quantity: 1 };
+
+    if (localStorage.cart) {
+      const cart = JSON.parse(localStorage.cart);
+      const filteredCart = cart.filter((item) => {
+        if (item.id === product.id) {
+          product.quantity = item.quantity + 1;
+          return false;
+        }
+        return true;
+      });
+      localStorage.cart = JSON.stringify([...filteredCart, product]);
+    } else {
+      localStorage.cart = JSON.stringify([product]);
+    }
+  }
+
   GetDetails = async () => {
     const { match: { params: { id } },
       location: { state: { selCat, query } } } = this.props;
@@ -30,7 +48,7 @@ class Details extends Component {
 
   render() {
     const { loading, product, description } = this.state;
-    const { title, thumbnail, price } = product;
+    const { id, title, thumbnail, price } = product;
     return (
       <div>
         <header>
@@ -50,6 +68,13 @@ class Details extends Component {
             <div>
               <p>{ description }</p>
             </div>
+            <button
+              data-testid="product-detail-add-to-cart"
+              type="button"
+              onClick={ () => this.setLocalStorage(id, title, price) }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         )}
       </div>

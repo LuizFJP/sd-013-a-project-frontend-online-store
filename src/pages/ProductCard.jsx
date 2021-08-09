@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class ProductCard extends Component {
+class ProductCard extends Component {
   render() {
     const {
       product: {
-        price, title, id, thumbnail,
+        price, title, thumbnail,
       },
     } = this.props;
 
@@ -24,3 +24,5 @@ export default class ProductCard extends Component {
     );
   }
 }
+
+export default ProductCard;

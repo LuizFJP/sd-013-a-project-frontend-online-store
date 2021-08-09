@@ -1,4 +1,6 @@
 import React from 'react';
+import * as API from '../services/api';
+import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -9,16 +11,16 @@ class ProductList extends React.Component {
     };
   }
 
-  componentDudMount() {
+  componentDidMount() {
     this.fetchProducts();
   }
 
-  fetchProducts = () => {
+  fetchProducts = async () => {
     const { categoryId, query } = this.props;
-    this.setState(async () => {
-      const requestProducts = await getProductsFromCategoryAndQuery(categoryId, query);
-      this.setState({ products: [...requestProducts] });
-    });
+    // console.log(this.props);
+    const requestProducts = await API.getProductsFromCategoryAndQuery(categoryId, query);
+    console.log('linha22', requestProducts);
+    this.setState({ products: requestProducts });
   }
 
   render() {

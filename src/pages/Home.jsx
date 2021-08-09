@@ -1,12 +1,34 @@
 import React from 'react';
+import ProductList from './ProductList';
+import SearchBar from './SearchBar';
 // Rodrigo Pova, Luiz Furtado, Filipe Cândido, Felipe Chagas, Danilo Uehara
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      query: '',
+      categoryId: '',
+      requestButton: false
+    };
+  }
+
+  handleChange = ({ target }) => {
+    const { value } = target;
+    this.setState({ query: value });
+  }
+
+  handleSubmit = () => {
+    this.setState({ requestButton: !(this.state.requestButton)});
+  }
+
   render() {
+    const { query, categoryId, requestButton } = this.state;
     return (
-      <label htmlFor="input-search" data-testid="home-initial-message">
-        Digite algum termo de pesquisa ou escolha uma categoria.
-        <input id="input-search" type="text" />
-      </label>
+      <div>
+        <SearchBar onChange={ this.handleChange } onSubmit= { this.handleSubmit} />
+        {requestButton && <ProductList query={ query } categoryId={ categoryId } />}
+      </div>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
 
@@ -48,6 +49,7 @@ class Home extends React.Component {
               <span>PESQUISAR</span>
             </button>
           </label>
+          <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
         </form>
         { !itemList ? (
           <span data-testid="home-initial-message">

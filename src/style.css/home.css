@@ -12,9 +12,16 @@ h1 {
   padding: 20px;
 }
 
+.searchArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .searchBar {
   border-radius: 8px;
-  margin: auto;
+  margin: 15px;
+  height: 30px;
   text-align: center;
-  width: 200px;
+  width: 600px;
 }

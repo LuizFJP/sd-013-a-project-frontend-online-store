@@ -1,0 +1,14 @@
+h3 {
+  margin-left: 40px;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
+.categories {
+  margin-left: 40px;
+  width: fit-content;
+}

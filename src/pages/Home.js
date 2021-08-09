@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CartButton from '../components/CartButton';
 import './Home.css';
 
 class Home extends Component {
@@ -16,6 +17,7 @@ class Home extends Component {
             <button type="button">
               <span role="img" aria-label="lupa">🔎</span>
             </button>
+            <CartButton />
           </header>
           <div>
             <span data-testid="home-initial-message">

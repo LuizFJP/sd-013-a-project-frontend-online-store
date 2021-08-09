@@ -7,7 +7,6 @@ function App() {
   const {getCategories} = api
   return (
     <div >
-      {getCategories()}
 
     </div>
   );

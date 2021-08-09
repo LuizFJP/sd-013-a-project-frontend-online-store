@@ -14,7 +14,7 @@ class Home extends Component {
     };
   }
 
-  fetchApi = async () => {
+  RenderList = async () => {
     const { selectedCat } = this.state;
     const searchedProduct = document.querySelector('.search-bar').value;
     const json = await api.getProductsFromCategoryAndQuery(selectedCat, searchedProduct);
@@ -35,20 +35,25 @@ class Home extends Component {
     }
   }
 
+  SetCategory = () => {
+    const selected = document.querySelector('input[name="categories"]:checked').value;
+    this.setState({ selectedCat: selected }, () => this.RenderList());
+  }
+
   render() {
     const { itemList } = this.state;
     return (
-      <div>
-        <Categories />
+      <div className="home">
+        <Categories onClick={ this.SetCategory } />
         <main className="home-main">
           <header className="home-header">
             <input className="search-bar" type="text" data-testid="query-input" />
-            <button data-testid="query-button" onClick={ this.fetchApi } type="button">
+            <button data-testid="query-button" onClick={ this.RenderList } type="button">
               <span role="img" aria-label="lupa">🔎</span>
             </button>
             <CartButton />
           </header>
-          <div>
+          <div className="home-product-list">
             { !itemList ? (
               <span data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.

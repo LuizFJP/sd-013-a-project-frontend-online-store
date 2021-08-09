@@ -5,10 +5,13 @@ class ProductCard extends Component {
   render() {
     const { item: { title, thumbnail, price } } = this.props;
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="home-product-card">
         <span>{ title }</span>
         <img src={ thumbnail } alt={ title } />
-        <span>{ price }</span>
+        <span>
+          R$
+          { price.toFixed(2) }
+        </span>
       </div>
     );
   }

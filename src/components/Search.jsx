@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Search extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
       <h2 data-testid="home-initial-message">

@@ -3,7 +3,7 @@
   padding: 15px;
 }
 
-.search-field::placeholder {
+.searchField::placeholder {
   text-align: center;
 }
 

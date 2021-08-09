@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CartButton from '../components/CartButton';
+import Categories from '../components/Categories';
 import './Home.css';
 
 class Home extends Component {
@@ -11,6 +12,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Categories />
         <main className="home-main">
           <header className="home-header">
             <input type="text" />

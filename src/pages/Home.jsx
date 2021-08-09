@@ -1,9 +1,12 @@
 import React from 'react';
+import CategoriesList from '../components/CategoriesList';
 
 class Home extends React.Component {
   render() {
     return (
       <div>
+        <CategoriesList />
+
         <label htmlFor="input-search">
           <input
             type="text"

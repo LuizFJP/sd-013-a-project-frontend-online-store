@@ -1,0 +1,19 @@
+.home-main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: auto;
+  width: 90%;
+}
+
+.home-header {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.home-header input {
+  width: 100%;
+}

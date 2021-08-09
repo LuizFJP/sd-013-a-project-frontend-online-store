@@ -21,7 +21,7 @@ export default class Category extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
+      <div className="Category">
         <ul>
           { categories.map((c) => <li data-testid="category" key={ c.id }>{c.name}</li>)}
         </ul>

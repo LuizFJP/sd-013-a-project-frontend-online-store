@@ -1,42 +1,58 @@
-.App {
-  text-align: center;
+body {
+  background-color: #D7F4FF;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.Category {
+  background-color: #0078A8;
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
   justify-content: center;
-  min-height: 100vh;
+  width: 250px;
+  text-align: left;
+  border-radius: 0px 24px 24px 0px;
 }
 
-.App-link {
-  color: #61dafb;
+.Category li{
+  list-style: none;
+  margin: 6px 0;
+  color: white;
+  padding-left: 25px;
 }
 
-@keyframes App-logo-spin {
+.Category li:hover {
+  transform: scale(1.1);
+  transition: 0.1s ease-out;
+  cursor: pointer;
+}
 
-  from {
-    transform: rotate(0deg);
-  }
+.Index {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: grey; */
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.Index p{
+  color: #9e9e9e;
+  font-family: serif;
+  font-weight: 100px;
+}
+
+.Index img {
+  height: 40px;
+  background-color: #F0802B;
+  border-radius: 20px;
+  padding: 0 100px;
+  justify-content: center;
+}
+
+.CartButton {
+  /* background-color: black; */
+  display: flex;
+  justify-content: center;
 }

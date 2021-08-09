@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { SearchInput } from './components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import SearchInput from './components/SearchInput';
 
 function App() {
   return (

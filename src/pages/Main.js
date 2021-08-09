@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Category from '../components/Category'
+import Category from '../components/Category';
 
 class Main extends Component {
-
   render() {
-  
     return (
       <div>
         <input />

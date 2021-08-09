@@ -10,19 +10,18 @@ class Category extends Component {
     };
   }
 
-  fetchCategory = async () => {
-    const requisicao = await api.getCategories()
-    this.setState({
-      categorias: [...requisicao],
-    })
-  }
-
   componentDidMount() {
     this.fetchCategory();
   }
 
-  render() {
+  fetchCategory = async () => {
+    const requisicao = await api.getCategories();
+    this.setState({
+      categorias: [...requisicao],
+    });
+  }
 
+  render() {
     const { categorias } = this.state;
 
     return (
@@ -31,9 +30,10 @@ class Category extends Component {
           Categorias:
           {
             categorias.map((category) => (
-            <li key={category.id} data-testid="category">
-              {category.name}
-            </li>))}
+              <li key={ category.id } data-testid="category">
+                {category.name}
+              </li>))
+          }
         </ul>
       </aside>
     );

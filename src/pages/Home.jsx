@@ -1,6 +1,6 @@
 import React from 'react';
-import Categories from './Categories';
 import { Link } from 'react-router-dom';
+import Categories from './Categories';
 import imgCarShop from '../image/shopping-cart_icon-icons.com_60593.svg';
 // Rodrigo Pova, Luiz Furtado, Filipe Cândido, Felipe Chagas, Danilo Uehara
 class Home extends React.Component {

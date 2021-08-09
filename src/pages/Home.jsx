@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categories from '../components/Categories';
 import '../style.css/home.css';
 
 export default class Home extends Component {
@@ -10,6 +11,7 @@ export default class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <Categories />
       </div>
     );
   }

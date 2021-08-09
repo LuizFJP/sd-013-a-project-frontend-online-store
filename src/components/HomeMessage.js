@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Listcategory from './ListCategory';
+import ListCategory from './ListCategory';
 
 class HomeMessage extends React.Component {
   render() {
@@ -11,7 +11,7 @@ class HomeMessage extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </label>
         <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-        <Listcategory />
+        <ListCategory />
       </div>
     );
   }

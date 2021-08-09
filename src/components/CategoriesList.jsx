@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getCategories } from '../services/api';
+import classes from '../pages/Home.module.css';
 
 export default class CategoriesList extends Component {
   constructor() {
@@ -24,19 +25,22 @@ export default class CategoriesList extends Component {
     const { categories } = this.state;
 
     return (
-      <ul>
-        {categories.map((category) => (
-          <NavLink
-            key={ category.id }
-            to={ `/${category.name}` }
-            activeClassName="selected"
-          >
-            <li data-testid="category">
-              {category.name}
-            </li>
-          </NavLink>
-        ))}
-      </ul>
+      <aside className={ classes.asideContainer }>
+        <ul>
+          { categories.map((category) => (
+            <NavLink
+              key={ category.id }
+              to={ `/${ category.name }` }
+              activeClassName="selected"
+              className={ classes.navLink }
+            >
+              <li data-testid="category">
+                { category.name }
+              </li>
+            </NavLink>
+          )) }
+        </ul>
+      </aside>
     );
   }
 }

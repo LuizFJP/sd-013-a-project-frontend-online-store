@@ -1,0 +1,49 @@
+.mainContainer {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: gray;
+  height: 100vh;
+}
+
+.asideContainer{
+  width: 20%;
+  background-color:green;
+  text-align: center;
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.asideContainer ul{
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+}
+
+.asideContainer li{
+  margin: 1px;
+  list-style: none;
+  text-decoration: none;
+  text-align: start;
+  color: #FFF;
+}
+
+.contentContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerContainer {
+  display: flex;
+  direction: row;
+  justify-content: space-around;
+  background-color: #044599;
+  align-items: center;
+}
+
+.productsContainer{ 
+  background-color: coral;
+}

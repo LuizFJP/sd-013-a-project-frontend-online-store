@@ -35,7 +35,8 @@ class Categories extends Component {
             key={ category.id }
           >
             {category.name}
-          </li>))}
+          </li>
+        ))}
       </ul>
       // <div>
       // <p>Teste</p>

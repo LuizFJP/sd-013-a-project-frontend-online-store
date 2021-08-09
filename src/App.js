@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
 
 export default class App extends Component {
-  componentDidMount() {
-    getCategories();
-    getProductsFromCategoryAndQuery();
-  }
-
   render() {
     return (
       <div>

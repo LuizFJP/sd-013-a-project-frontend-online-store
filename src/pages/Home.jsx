@@ -1,5 +1,5 @@
 import React from 'react';
-
+// Rodrigo Pova, Luiz Furtado, Filipe Cândido, Felipe Chagas, Danilo Uehara
 class Home extends React.Component {
   render() {
     return (

@@ -10,5 +10,3 @@ export async function getProductsFromCategoryAndQuery(categoryId = '', query = '
   const getProducts = await getFetch.json();
   return getProducts;
 }
-
-export default getCategories;

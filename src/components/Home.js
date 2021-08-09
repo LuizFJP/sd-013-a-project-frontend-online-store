@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
+import List from './List';
 
 class Home extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Home extends React.Component {
     const { itemList } = this.state;
     return (
       <div>
+        <List />
         <form>
           <label htmlFor="text">
             <input

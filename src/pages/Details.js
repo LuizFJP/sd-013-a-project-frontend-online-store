@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import CartButton from '../components/CartButton';
+import './Details.css';
 
 class Details extends Component {
   constructor(props) {
@@ -50,25 +51,28 @@ class Details extends Component {
     const { loading, product, description } = this.state;
     const { id, title, thumbnail, price } = product;
     return (
-      <div>
-        <header>
+      <div className="details-body">
+        <header className="details-header">
           <Link to="/">Voltar</Link>
           <CartButton />
         </header>
         {!loading && (
-          <div>
-            <div>
-              <span data-testid="product-detail-name">{ title }</span>
-              <img src={ thumbnail } alt={ title } />
-              <span>
-                R$
-                { price.toFixed(2) }
-              </span>
-            </div>
-            <div>
-              <p>{ description }</p>
+          <div className="details-outercontainer">
+            <div className="details-innercontainer">
+              <div className="details-product-info">
+                <span data-testid="product-detail-name">{ title }</span>
+                <img src={ thumbnail } alt={ title } />
+                <span>
+                  R$
+                  { price.toFixed(2) }
+                </span>
+              </div>
+              <div className="details-product-description">
+                <p>{ description }</p>
+              </div>
             </div>
             <button
+              className="details-addToCart-btn"
               data-testid="product-detail-add-to-cart"
               type="button"
               onClick={ () => this.setLocalStorage(id, title, price) }

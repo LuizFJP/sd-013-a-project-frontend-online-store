@@ -2,7 +2,7 @@ import React from 'react';
 
 class FilterProducts extends React.Component {
   render() {
-    return <p>FilterProductzs</p>;
+    return <p>FilterPsroductzs</p>;
   }
 }
 

@@ -4,6 +4,7 @@ import './App.css';
 import Cart from './pages/Cart';
 import Details from './pages/Details';
 import Home from './pages/Home';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
 
         <Route exact path="/details/:id">
           {(routerProps) => <Details { ...routerProps } />}
+        </Route>
+
+        <Route exact path="/checkout">
+          <Checkout />
         </Route>
 
       </Switch>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class ProductDetail extends React.Component {
@@ -34,15 +35,27 @@ class ProductDetail extends React.Component {
     const { product: { title, price, thumbnail } } = this.state;
     return (
       <div>
-        <p>{`${title} - R$${price}`}</p>
+        <span data-testid="product-detail-name">{`${title}`}</span>
+        <span>{` - R$${price}`}</span>
         <img src={ thumbnail } alt="" />
         <h3>Especificações Técnicas</h3>
         <ul>
-          <li>s</li>
+          <li>d</li>
         </ul>
       </div>
     );
   }
 }
+
+ProductDetail.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.string,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default ProductDetail;

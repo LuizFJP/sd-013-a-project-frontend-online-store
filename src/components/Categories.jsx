@@ -11,14 +11,11 @@ class Categories extends Component {
   }
 
   componentDidMount() {
-    console.log('entrou no didmount');
     this.fetchList();
   }
 
   fetchList = async () => {
-    console.log('entrou no fetch');
     const listOfCategories = await api.getCategories();
-    console.log(listOfCategories);
     this.setState({
       categories: listOfCategories,
     });
@@ -35,13 +32,9 @@ class Categories extends Component {
             key={ category.id }
           >
             {category.name}
-          </li>))}
+          </li>
+        ))}
       </ul>
-      // <div>
-      // <p>Teste</p>
-
-    // {console.log('entrou no render')}
-    // </div>
     );
   }
 }

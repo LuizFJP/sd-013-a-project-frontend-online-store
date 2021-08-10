@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import * as api from '../services/api';
 import PropTypes from 'prop-types';
+import * as api from '../services/api';
+
 
 class List extends Component {
   constructor(props) {

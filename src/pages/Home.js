@@ -4,7 +4,6 @@ import * as api from '../services/api';
 
 import CategoriesFilter from '../components/CategoriesFilter';
 
-
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +54,6 @@ class Main extends Component {
       }
     });
   }
-
 
   render() {
     const { inputValue, inCart, noSearch } = this.state;

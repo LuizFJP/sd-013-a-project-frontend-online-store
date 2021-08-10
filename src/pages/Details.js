@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import CartButton from '../components/CartButton';
 import './Details.css';
+import ReviewForm from '../components/ReviewForm';
+import Reviews from '../components/Reviews';
 
 class Details extends Component {
   constructor(props) {
@@ -81,6 +83,8 @@ class Details extends Component {
             </button>
           </div>
         )}
+        <ReviewForm id={ id } />
+        <Reviews id={ id } />
       </div>
     );
   }

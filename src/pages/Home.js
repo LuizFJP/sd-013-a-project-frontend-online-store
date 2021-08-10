@@ -58,7 +58,15 @@ class Main extends Component {
 
 
   render() {
-    const { inputValue, inCart, noSearch } = this.state;
+    const { inputValue, inCart, noSearch, products } = this.state;
+
+    const showProducts = (products.map((product) => <ProductCard key={ product.id } product={ product } /> ));
+
+    const facaUmaBusca = (
+      <p data-testid="home-initial-message">
+        Digite algum termo de pesquisa ou escolha uma categoria.
+      </p>
+    )
 
     return (
       <div>
@@ -76,10 +84,7 @@ class Main extends Component {
         >
           Buscar
         </button>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-
+        { noSearch ? facaUmaBusca : showProducts }
         <Link to="/Cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
         <CategoriesFilter onClick={ this.handleChangeCategory } />
       </div>

@@ -38,27 +38,32 @@ class Home extends Component {
     }
   }
 
+  fetchCategory = async (categoria) => {
+    if (categoria) {
+      const requisicao = await api.getProductsFromCategoryAndQuery(categoria, false);
+      const produtos = requisicao.results;
+      this.setState({
+        products: [...produtos],
+      }, () => this.setState({
+        noSearch: false,
+      }));
+    }
+  }
+
   handleChangeCategory = ({ target }) => {
     const { value } = target;
     const { categoria } = this.state;
     this.setState({
       categoria: value,
-    }, async () => {
-      if (categoria) {
-        const requisicao = await api.getProductsFromCategoryAndQuery(categoria, false);
-        const produtos = requisicao.results;
-        this.setState({
-          products: [...produtos],
-          noSearch: false,
-        });
-      }
-    });
+    }, () => this.fetchCategory(categoria));
   }
 
   render() {
     const { inputValue, inCart, noSearch, products } = this.state;
 
-    const showProducts = (products.map((product) => <ProductCard key={ product.id } product={ product } />));
+    const showProducts = (
+      products.map((product) => <ProductCard key={ product.id } product={ product } />)
+    );
 
     const facaUmaBusca = (
       <p data-testid="home-initial-message">

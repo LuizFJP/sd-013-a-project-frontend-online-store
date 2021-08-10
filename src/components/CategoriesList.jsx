@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { getCategories } from '../services/api';
 import classes from '../pages/Home.module.css';
 
@@ -29,10 +28,8 @@ export default class CategoriesList extends Component {
     return (
       <aside className={ classes.asideContainer }>
         {categories.map((category) => (
-          <NavLink
+          <div
             key={ category.id }
-            to={ `/${category.name}` }
-            activeClassName="selected"
             className={ classes.navLink }
           >
             <label htmlFor="category">
@@ -45,7 +42,7 @@ export default class CategoriesList extends Component {
               />
               { category.name }
             </label>
-          </NavLink>
+          </div>
         ))}
       </aside>
     );

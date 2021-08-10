@@ -24,7 +24,7 @@ export default class Products extends Component {
               state: { data },
             } }
           >
-            <img src="{ data.thumbnail " alt={ `foto ${data.title}` } width="300" />
+            <img src={ data.thumbnail } alt={ `foto ${data.title}` } width="100" />
             <p>{ `R$${parseFloat(data.price).toFixed(2)}` }</p>
           </Link>
           <AddProduct data={ data } />

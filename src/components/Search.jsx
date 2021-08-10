@@ -5,9 +5,10 @@ export default class Home extends Component {
   render() {
     const { onClick, onChange, query } = this.props;
     return (
-      <form>
+      <div>
         <input
           type="text"
+          name="query"
           data-testid="query-input"
           placeholder="Digite sua busca"
           value={ query }
@@ -20,7 +21,7 @@ export default class Home extends Component {
         >
           Buscar
         </button>
-      </form>
+      </div>
     );
   }
 }

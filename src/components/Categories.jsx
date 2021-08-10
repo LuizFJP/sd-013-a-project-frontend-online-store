@@ -16,6 +16,11 @@ class Categories extends React.Component {
       loading: false }));
   }
 
+  UpdateProduct = (event) => {    
+    api.getCategories().then((product) => product.filter()
+    }
+
+
   render() {
     const { categories, loading } = this.state;
     if (loading) {
@@ -30,6 +35,7 @@ class Categories extends React.Component {
               <li
                 key={ categorie.id }
                 data-testid="category"
+                onClick={ this.UpdateProduct }
               >
                 {categorie.name}
               </li>))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import CarShop from './pages/CarShop';
 import Home from './pages/Home';
 import ListByCategory from './pages/ListByCategory';
 
@@ -14,6 +15,7 @@ function App() {
           path="/:category"
           render={ (props) => <ListByCategory { ...props } /> }
         />
+        <Route exact path="/carshop" component={ CarShop } />
       </Switch>
     </BrowserRouter>
   );

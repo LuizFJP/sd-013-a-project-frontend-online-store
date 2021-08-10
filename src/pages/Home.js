@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categorias from './Categorias';
@@ -10,21 +9,28 @@ class Home extends Component {
     super();
 
     this.state = {
+      categoriaId: '',
       termoBusca: '',
       produtos: [],
     };
   }
 
   executaBusca = async () => {
-    const { termoBusca } = this.state;
-
-    const produtos = await getProductsFromCategoryAndQuery(null, termoBusca);
+    const { categoriaId, termoBusca } = this.state;
+    const produtos = await getProductsFromCategoryAndQuery(categoriaId, termoBusca);
     this.setState({ produtos: produtos.results });
   }
 
   atualizaTermo = ({ target }) => {
     const { value } = target;
     this.setState({ termoBusca: value });
+  }
+
+  atualizaCategoriaId = ({ target }) => {
+    const { id } = target;
+    this.setState({ categoriaId: id }, () => {
+      this.executaBusca();
+    });
   }
 
   render() {
@@ -53,8 +59,8 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <div>
-          <Categorias />
           <Produtos produtos={ produtos } gestorDoCarrinho={ gestorDoCarrinho }  />
+          <Categorias atualizaCategoriaId={ this.atualizaCategoriaId } />
         </div>
       </main>
     );

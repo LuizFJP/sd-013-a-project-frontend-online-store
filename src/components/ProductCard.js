@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class ProductCard extends Component {
   setLocalStorage = (id, title, price) => {
     const product = { id, title, price, quantity: 1 };
+    const { onClick } = this.props;
 
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.cart);
@@ -19,6 +20,7 @@ class ProductCard extends Component {
     } else {
       localStorage.cart = JSON.stringify([product]);
     }
+    onClick();
   }
 
   render() {
@@ -56,6 +58,7 @@ ProductCard.propTypes = {
     id: PropTypes.string,
     price: PropTypes.number,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
   selCat: PropTypes.string.isRequired,
   query: PropTypes.string.isRequired,
 };

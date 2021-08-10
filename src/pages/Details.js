@@ -13,11 +13,13 @@ class Details extends Component {
       loading: true,
       product: {},
       description: '',
+      cartQuantity: 0,
     };
   }
 
   componentDidMount() {
     this.GetDetails();
+    this.CartQuantity();
   }
 
   setLocalStorage = (id, title, price) => {
@@ -36,6 +38,18 @@ class Details extends Component {
     } else {
       localStorage.cart = JSON.stringify([product]);
     }
+    this.CartQuantity();
+  }
+
+  CartQuantity = () => {
+    if (!localStorage.cart || localStorage.cart === '[]') return;
+
+    const cart = JSON.parse(localStorage.cart);
+
+    const soma = cart.reduce((acc, { quantity }) => (
+      acc + parseFloat(quantity)), 0);
+
+    this.setState({ cartQuantity: soma });
   }
 
   GetDetails = async () => {
@@ -49,13 +63,13 @@ class Details extends Component {
   }
 
   render() {
-    const { loading, product, description } = this.state;
+    const { loading, product, description, cartQuantity } = this.state;
     const { id, title, thumbnail, price } = product;
     return (
       <div className="details-body">
         <header className="details-header">
           <Link to="/">Voltar</Link>
-          <CartButton />
+          <CartButton cartQuantity={ cartQuantity } />
         </header>
         {!loading && (
           <>

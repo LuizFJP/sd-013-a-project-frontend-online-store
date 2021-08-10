@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+// import { getProductsFromCategoryAndQuery } from './services/api';
+import Body from './components/Body';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  // componentDidMount() {
+  //   getProductsFromCategoryAndQuery('MLB1132', 'molho de tomate');
+  // }
+
+  render() {
+    return (
+      <div className="App">
+        <Body />
+      </div>
+    );
+  }
 }
 
 export default App;

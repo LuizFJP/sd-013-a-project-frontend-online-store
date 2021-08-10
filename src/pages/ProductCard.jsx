@@ -9,7 +9,7 @@ class ProductCard extends Component {
     } = this.props;
 
     return (
-      <div data-testeid="product">
+      <div data-testid="product">
         <div className="product-img">
           <img src={ thumbnail } alt={ title } />
         </div>

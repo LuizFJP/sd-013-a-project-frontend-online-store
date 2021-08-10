@@ -1,11 +1,34 @@
 import React, { Component } from 'react';
 import '../style.css/home.css';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
+import * as api from '../services/api';
+import Results from '../components/Results';
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput: '',
+      category: '',
+      searchResults: [],
+    };
+  }
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleClick = () => {
+    const { searchInput, category } = this.state;
+    api.getProductsFromCategoryAndQuery(category, searchInput)
+      .then((resolve) => this.setState({ searchResults: resolve.results }));
+  }
+
   render() {
+    const { searchInput, searchResults } = this.state;
     return (
       <div>
         <header>
@@ -17,12 +40,30 @@ export default class Home extends Component {
           </div>
         </header>
         <div className="searchArea">
-          <input className="searchBar" type="text" />
+          <input
+            className="searchBar"
+            type="text"
+            name="searchInput"
+            data-testid="query-input"
+            onChange={ this.handleChange }
+            value={ searchInput }
+          />
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
+          <button
+            type="button"
+            aria-label="Search"
+            data-testid="query-button"
+            onClick={ this.handleClick }
+          >
+            <FaSearch />
+          </button>
         </div>
         <Categories />
+        <main>
+          <Results searchResults={ searchResults } />
+        </main>
         <footer>
           <h5>
             Desenvolvido por:

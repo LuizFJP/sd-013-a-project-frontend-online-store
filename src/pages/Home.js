@@ -12,10 +12,12 @@ class Home extends Component {
       searchField: '',
       filteredProducts: [],
       searchIsCalled: false,
+      category: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChangeRadio = this.handleChangeRadio.bind(this);
   }
 
   handleChange(event) {
@@ -24,6 +26,14 @@ class Home extends Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleChangeRadio(event) {
+    const { target: { name, value } } = event;
+
+    this.setState({
+      [name]: value,
+    }, () => this.fetchProducts());
   }
 
   handleClick() {
@@ -35,8 +45,8 @@ class Home extends Component {
   }
 
   async fetchProducts() {
-    const { searchField } = this.state;
-    const { results } = await api.getProductsFromCategoryAndQuery('', searchField);
+    const { searchField, category } = this.state;
+    const { results } = await api.getProductsFromCategoryAndQuery(category, searchField);
 
     this.setState({
       filteredProducts: results,
@@ -70,7 +80,7 @@ class Home extends Component {
           <Link to="/shopping-cart" data-testid="shopping-cart-button">Cart</Link>
         </header>
         <div className="content">
-          <Categories />
+          <Categories handleChange={ this.handleChangeRadio } />
           <CardsList products={ filteredProducts } searchIsCalled={ searchIsCalled } />
         </div>
       </>

@@ -13,9 +13,10 @@ function App() {
         <Route exact path="/carshop" component={ CarShop } />
         <Route
           exact
-          path="/product/:id/detail"
-          render={ (props) => <ProductDetails { ...props } /> }
-        />
+          path="/product/:id"
+        >
+          { (props) => <ProductDetails { ...props } /> }
+        </Route>
       </Switch>
     </BrowserRouter>
   );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ProductDetails from './ProductDetails';
 
 class ProductCard extends Component {
   render() {
@@ -22,9 +21,13 @@ class ProductCard extends Component {
         </div>
         <Link
           type="button"
-          onClick={ () => <ProductDetails /> }
           data-testid="product-detail-link"
-          to={ { pathname: `/ProductDetails/${id}` } }
+          to={ {
+            pathname: `/product/${id}`,
+            state: {
+              product,
+            },
+          } }
         >
           Detalhes do Produto
         </Link>

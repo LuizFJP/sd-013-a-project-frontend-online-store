@@ -15,7 +15,9 @@ class Home extends React.Component {
 
   fetchProducts = async (query, categoryId = '') => {
     const requestProducts = await API.getProductsFromCategoryAndQuery(categoryId, query);
-    this.setState({ products: [...requestProducts.results] });
+    this.setState({
+      products: [...requestProducts.results],
+    });
   }
 
   render() {

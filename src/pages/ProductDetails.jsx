@@ -1,63 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as API from '../services/api';
+import { Link } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      product: {},
-    };
-  }
-
-  componentDidMount() {
-    const { match: { params: { id } } } = this.props;
-    this.fetchApiID(id, '');
-  }
-
-  fetchApiID = async (categoryId, query = '') => {
-    const requestProducts = await API.getProductsFromCategoryAndQuery(categoryId, query);
-    this.setState({ product: requestProducts.results });
-  }
-
-  showProductDetails = (productId) => {
-    const { product } = this.state;
-    const showIdProduct = product.find((produ) => produ.id === productId);
-    const { price, title, thumbnail, description } = showIdProduct;
+  render() {
+    const { location: { state: { product } } } = this.props;
+    const { price, title, thumbnail, attributes } = product;
     return (
       <div>
         <div>
           <img src={ thumbnail } alt={ title } />
         </div>
         <div>
-          <span>{title}</span>
-          <p>{description}</p>
-          <span>
-            R$
-            {price}
-          </span>
+          <div>
+            <span data-testid="product-detail-name">{title}</span>
+          </div>
+          <div>
+            <span>
+              R$
+              {price}
+            </span>
+          </div>
+          <div>
+            <ul>
+              {attributes.map((attri) => (
+                <li key={ attri.name }>
+                  {`${attri.name}: ${attri.value_name}`}
+                </li>))}
+            </ul>
+          </div>
         </div>
-      </div>
-    );
-  }
-
-  render() {
-    const { match: { params: { id } } } = this.props;
-    return (
-      <div>
-        { this.showProductDetails(id)}
+        <div>
+          <Link to="/">Voltar</Link>
+        </div>
       </div>
     );
   }
 }
 
 ProductDetails.propTypes = {
-  product: PropTypes.shape({
-    price: PropTypes.number,
-    title: PropTypes.string,
-    thumbnail: PropTypes.string,
-    description: PropTypes.string,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      product: PropTypes.shape({
+        price: PropTypes.number,
+        title: PropTypes.string,
+        thumbnail: PropTypes.string,
+        attributes: PropTypes.arrayOf(PropTypes.object),
+      }).isRequired,
+    }),
   }).isRequired,
 };
 

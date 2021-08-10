@@ -11,12 +11,14 @@ class Home extends React.Component {
     super();
     this.state = {
       categories: [],
-      inputValue: '',
       products: [],
+      inputValue: undefined,
+      category: undefined,
     };
     this.categories = this.categories.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
   componentDidMount() {
@@ -24,15 +26,24 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
+    const id = event.target.value;
     this.setState({
-      inputValue: event.target.value,
+      inputValue: id,
     });
-    this.getProduct();
+    this.getProduct(undefined, id);
+  }
+
+  handleChangeCategory(e) {
+    const id = e.target.value;
+    this.setState({
+      category: id,
+    });
+    this.getProduct(id, undefined);
   }
 
   async getProduct() {
-    const { inputValue } = this.state;
-    const products = await getProductsFromCategoryAndQuery('', inputValue);
+    const { inputValue, category } = this.state;
+    const products = await getProductsFromCategoryAndQuery(category, inputValue);
     this.setState({
       products,
     });
@@ -40,7 +51,6 @@ class Home extends React.Component {
 
   async categories() {
     const categories = await getCategories();
-    console.log(categories);
     this.setState({
       categories,
     });
@@ -50,7 +60,10 @@ class Home extends React.Component {
     const { categories, products } = this.state;
     return (
       <div>
-        <CategoriesList categories={ categories } />
+        <CategoriesList
+          categories={ categories }
+          handleChangeCategory={ this.handleChangeCategory }
+        />
         <form>
           <label
             type="text"

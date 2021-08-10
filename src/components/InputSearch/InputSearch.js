@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Categories from './categories';
+import Categories from '../Categories/Categories';
 
 export default class InputSearch extends Component {
   render() {

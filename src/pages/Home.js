@@ -12,7 +12,7 @@ class Home extends Component {
       categoria: '',
       noSearch: true,
       products: [],
-      inCart: 0,
+      // inCart: 0,
     };
   }
 
@@ -38,12 +38,10 @@ class Home extends Component {
     }
   }
 
-  fetchCategory = async (categoria) => {
-    console.log('aumenta array');
-    if (categoria) {
-      const requisicao = await api.getProductsFromCategoryAndQuery(categoria, false);
+  fetchCategory = async (value) => {
+    if (value) {
+      const requisicao = await api.getProductsFromCategoryAndQuery(value, false);
       const produtos = await requisicao.results;
-      console.log('aumenta array');
       this.setState({
         products: [...produtos],
       }, () => this.setState({
@@ -54,14 +52,13 @@ class Home extends Component {
 
   handleChangeCategory = ({ target }) => {
     const { value } = target;
-    console.log('handle1');
     this.setState({
       categoria: value,
     }, () => this.fetchCategory(value));
   }
 
   render() {
-    const { inputValue, inCart, noSearch, products } = this.state;
+    const { inputValue, noSearch, products } = this.state;
 
     const showProducts = (
       products.map((product) => <ProductCard key={ product.id } product={ product } />)

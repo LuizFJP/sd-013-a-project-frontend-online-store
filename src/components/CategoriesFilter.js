@@ -18,7 +18,7 @@ class CategoriesFilter extends Component {
   fetchCategory = async () => {
     const requisicao = await api.getCategories();
     this.setState({
-      categorias: [...requisicao],
+      categorias: requisicao,
     });
   }
 
@@ -41,7 +41,8 @@ class CategoriesFilter extends Component {
                   onChange={ onChange }
                 />
                 {category.name}
-              </li>))
+              </li>
+            ))
           }
         </ol>
       </aside>
@@ -50,7 +51,7 @@ class CategoriesFilter extends Component {
 }
 
 CategoriesFilter.propTypes = ({
-  onClick: PropTypes.func,
+  onChange: PropTypes.func,
 }).isRequired;
 
 export default CategoriesFilter;

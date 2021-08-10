@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Category from '../components/Category';
+import CategoriesFilter from '../components/CategoriesFilter';
 
 class Main extends Component {
   constructor(props) {
@@ -14,7 +14,26 @@ class Main extends Component {
     };
   }
 
+  handleChangeCategory = ({ target }) => {
+    const { value } = target;
+    const { categoria } = this.state;
+    this.setState({
+      categoria: value,
+    }, async () => {
+      if (categoria) {
+        const requisicao = await api.getProductsFromCategoryAndQuery(categoria, false);
+        const produtos = requisicao.results;
+        this.setState({
+          products: [...produtos],
+          noSearch: false,
+        });
+      }
+    });
+  }
+
   render() {
+    const { inputValue, inCart, noSearch } = this.state;
+
     return (
       <div>
         <input />
@@ -23,7 +42,7 @@ class Main extends Component {
         </p>
 
         <Link to="/Cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
-        <Category />
+        <CategoriesFilter onClick={ this.handleChangeCategory } />
       </div>
     );
   }

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
@@ -46,29 +47,40 @@ class Home extends React.Component {
   render() {
     const { itemList } = this.state;
     return (
-      <div>
-        <List callback={ this.searchCategory } />
-        <form>
-          <label htmlFor="text">
-            <input
-              id="text"
-              className="search-input"
-              type="text"
-              data-testid="query-input"
-            />
-            <button data-testid="query-button" onClick={ this.fetchApi } type="button">
-              <span>PESQUISAR</span>
-            </button>
-          </label>
-          <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
-        </form>
-        { !itemList ? (
-          <span data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </span>)
-          : itemList}
-      </div>
-
+      <main>
+        <aside className="categoryList">
+          <List callback={ this.searchCategory } />
+        </aside>
+        <div className="rightBlock">
+          <form className="search">
+            <label htmlFor="text">
+              <input
+                id="text"
+                className="search-input"
+                type="text"
+                data-testid="query-input"
+              />
+              <button data-testid="query-button" onClick={ this.fetchApi } type="button">
+                <span>PESQUISAR</span>
+              </button>
+            </label>
+            <Link
+              className="cart"
+              to="/shoppingcart"
+              data-testid="shopping-cart-button"
+            >
+              Carrinho
+            </Link>
+          </form>
+          <section className="itemsList">
+            { !itemList ? (
+              <span data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </span>)
+              : itemList}
+          </section>
+        </div>
+      </main>
     );
   }
 }

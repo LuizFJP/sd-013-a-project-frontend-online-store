@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class CategoriesFilter extends Component {
@@ -23,21 +24,33 @@ class CategoriesFilter extends Component {
 
   render() {
     const { categorias } = this.state;
+    const { onClick } = this.props;
 
     return (
       <aside>
-        <ul>
+        <ol>
           Categorias:
           {
             categorias.map((category) => (
               <li key={ category.id } data-testid="category">
+                <input
+                  type="radio"
+                  id={ category.name }
+                  name="categoria"
+                  value={ category.id }
+                  onClick={ onClick }
+                />
                 {category.name}
               </li>))
           }
-        </ul>
+        </ol>
       </aside>
     );
   }
 }
+
+CategoriesFilter.propTypes = ({
+  onClick: PropTypes.func,
+}).isRequired;
 
 export default CategoriesFilter;

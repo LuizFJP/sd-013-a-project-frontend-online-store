@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Home from './Home';
 
 class ListByCategory extends React.Component {
@@ -9,13 +8,5 @@ class ListByCategory extends React.Component {
     );
   }
 }
-
-// ListByCategory.propTypes = {
-//   match: PropTypes.shape({
-//     params: PropTypes.shape({
-//       category: PropTypes.string,
-//     }),
-//   }).isRequired,
-// };
 
 export default ListByCategory;

@@ -6,6 +6,7 @@ import * as API from '../services/api';
 
 import imgCarShop from '../image/shopping-cart_icon-icons.com_60593.svg';
 import Categories from './Categories';
+// import CarShop from './CarShop';
 // Rodrigo Pova, Luiz Furtado, Filipe Cândido, Felipe Chagas, Danilo Uehara
 class Home extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Home extends React.Component {
 
     this.state = {
       products: [],
+      carrinho: ['QUALQUER COISA'],
     };
   }
 
@@ -21,17 +23,29 @@ class Home extends React.Component {
     this.setState({ products: [...requestProducts.results] });
   }
 
+  addToCart = (product) => {
+    this.setState({ carrinho: [...this.state.carrinho, product] });
+    console.log(this.state.carrinho);
+  }
+
   render() {
-    const { products } = this.state;
+    const { products, carrinho } = this.state;
     return (
       <div>
         <SearchBar onClick={ this.fetchProducts } />
         <Categories onClick={ this.fetchProducts } />
-        <ProductList products={ products } />
-        <Link data-testid="shopping-cart-button" to="/carshop">
+        <ProductList products={ products } addToCart={ this.addToCart } />
+        <Link
+          data-testid="shopping-cart-button"
+          to={
+            { pathname: '/carshop',
+              state: { carrinho } }
+          }
+        >
           <img src={ imgCarShop } alt="carrinho de compras" />
         </Link>
       </div>
+
     );
   }
 }

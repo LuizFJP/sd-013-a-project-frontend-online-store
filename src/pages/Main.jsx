@@ -20,6 +20,7 @@ class Main extends Component {
         products: result,
         message: false,
       });
+      console.log(categoryId);
     } catch (error) {
       this.setState({
         products: [],
@@ -38,7 +39,7 @@ class Main extends Component {
           <ButtonCart />
         </header>
         <aside>
-          <Categories />
+          <Categories fetch={ this.fetchList } />
         </aside>
         <section>
           { message

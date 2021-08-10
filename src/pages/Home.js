@@ -11,7 +11,23 @@ class Home extends Component {
     this.state = {
       selectedCat: undefined,
       itemList: undefined,
+      cartQuantity: 0,
     };
+  }
+
+  componentDidMount() {
+    this.CartQuantity();
+  }
+
+  CartQuantity = () => {
+    if (!localStorage.cart || localStorage.cart === '[]') return;
+
+    const cart = JSON.parse(localStorage.cart);
+
+    const soma = cart.reduce((acc, { quantity }) => (
+      acc + parseFloat(quantity)), 0);
+
+    this.setState({ cartQuantity: soma });
   }
 
   RenderList = async () => {
@@ -21,6 +37,7 @@ class Home extends Component {
 
     const list = json.results.map((item) => (
       <ProductCard
+        onClick={ this.CartQuantity }
         key={ item.id }
         item={ item }
         selCat={ selectedCat }
@@ -41,7 +58,7 @@ class Home extends Component {
   }
 
   render() {
-    const { itemList } = this.state;
+    const { itemList, cartQuantity } = this.state;
     return (
       <div className="home">
         <Categories onClick={ this.SetCategory } />
@@ -51,7 +68,7 @@ class Home extends Component {
             <button data-testid="query-button" onClick={ this.RenderList } type="button">
               <span role="img" aria-label="lupa">🔎</span>
             </button>
-            <CartButton />
+            <CartButton cartQuantity={ cartQuantity } />
           </header>
           <div className="home-product-list">
             { !itemList ? (

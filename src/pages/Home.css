@@ -35,6 +35,15 @@
   width: 100%;
 }
 
+.cart-button {
+  position: relative;
+}
+
+.cart-quantity {
+  left: 35%;
+  position: absolute;
+}
+
 .home-product-list {
   display: flex;
   flex-wrap: wrap;

@@ -8,6 +8,15 @@
   justify-content: space-between;
 }
 
+.cart-button {
+  position: relative;
+}
+
+.cart-quantity {
+  left: 35%;
+  position: absolute;
+}
+
 .details-header * {
   margin: 10px;
 }

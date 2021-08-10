@@ -30,12 +30,19 @@ class ProductList extends React.Component {
     // if (!found) return <p>Nenhum produto foi encontrado</p>;
     return (
       <div>
-        {products.map((product) => (
-          <ProductItem product={ product } key={ product.id } />
-        ))}
+        <p
+          data-testid="home-initial-message"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+        <div>
+          {products.map((product) => (
+            <ProductItem product={ product } key={ product.id } data-testid="product" />
+          ))}
+        </div>
       </div>
     );
   }
 }
-
+// Salewski, Vanessa Rios e o Manu.
 export default ProductList;

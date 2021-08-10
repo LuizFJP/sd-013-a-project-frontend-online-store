@@ -9,6 +9,7 @@ class SeachBar extends React.Component {
             type="text"
             data-testid="query-input"
             name="Product-Search"
+            placeholder="Digite o nome do produto"
           />
           <button
             type="submit"

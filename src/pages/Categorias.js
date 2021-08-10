@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { getCategories } from '../services/api';
 
-class Categories extends Component {
+class Categorias extends Component {
   constructor() {
     super();
 
     this.state = {
-      categories: [],
+      categorias: [],
     };
   }
 
   componentDidMount() {
-    this.setCategories();
+    this.setCategorias();
   }
 
-  setCategories = async () => {
-    const categoriesJson = await getCategories();
-    this.setState({ categories: categoriesJson });
+  setCategorias = async () => {
+    const categoriasJson = await getCategories();
+    this.setState({ categorias: categoriasJson });
   }
 
   render() {
-    const { categories } = this.state;
+    const { categorias } = this.state;
     return (
       <div>
         <ul>
-          {categories
+          {categorias
             .map(({ name, id }) => <li data-testid="category" key={ id }>{ name }</li>)}
         </ul>
       </div>
@@ -32,4 +32,4 @@ class Categories extends Component {
   }
 }
 
-export default Categories;
+export default Categorias;

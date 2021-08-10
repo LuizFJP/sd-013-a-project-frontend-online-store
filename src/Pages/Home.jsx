@@ -11,37 +11,63 @@ class Home extends React.Component {
     super();
     this.state = {
       resultadoDoPai: [],
-      produto: '',
+      product: '',
+      shouldDisplay: false,
     };
 
     this.alterarEstado = this.alterarEstado.bind(this);
     this.filter = this.filter.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  async alterarEstado(param1) {
-    await Api.getProductsFromCategoryAndQuery('', param1)
+  handleChange({ target }) {
+    this.setState({
+      product: target.value,
+      shouldDisplay: target.value.length > 0
+    });
+  }
+
+  async alterarEstado() {
+    const { product } = this.state;
+    await Api.getProductsFromCategoryAndQuery('', product)
       .then((data) => this.setState({
         resultadoDoPai: data.results,
-        produto: param1,
       }));
   }
 
   async filter(param1) {
-    const { produto } = this.state;
-    await Api.getProductsFromCategoryAndQuery(param1, produto)
-      .then((data) => this.setState({
-        resultadoDoPai: data.results,
-      }));
+    const { product } = this.state;
+    await Api.getProductsFromCategoryAndQuery(param1, product)
+      .then((data) => {
+        // console.log(data.results);
+        this.setState({
+          resultadoDoPai: data.results,
+          product: product,
+          shouldDisplay: true,
+        })
+      });
   }
 
   render() {
-    const { resultadoDoPai, produto } = this.state;
+    const { resultadoDoPai, product, shouldDisplay } = this.state;
     return (
-      <div>
-        <SearchBar alterarEstado={ this.alterarEstado } />
-        <Link to="/cart" data-testid="shopping-cart-button">Shopping Cart</Link>
+      <div style={{display: 'flex'}}>
         <SideBar filter={ this.filter } />
-        <ProductList resultadoDoPai={ resultadoDoPai } produto={ produto } />
+        <main style={{display: 'flex', flexDirection: 'column'}}>
+          <div>
+            <SearchBar
+              alterarEstado={ this.alterarEstado }
+              handleChange={this.handleChange}
+              product={product}
+            />
+            <Link to="/cart" data-testid="shopping-cart-button">Shopping Cart</Link>
+          </div>
+          <ProductList
+          resultadoDoPai={ resultadoDoPai }
+          product={ product }
+          shouldDisplay={ shouldDisplay }
+          />
+        </main>
       </div>
     );
   }

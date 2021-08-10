@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 class ProductList extends Component {
   // constructor(props) {
   //   super(props);
-  //   // this.state = {
-  //   //   result: props.resultadoDoPai,
-  //   // };
+  //   this.state = {
+  //     result: props.resultadoDoPai,
+  //   };
   // }
 
   ifNotResult = () => (
@@ -22,15 +22,17 @@ class ProductList extends Component {
         <h2>{res.title}</h2>
         <img src={ res.thumbnail } alt={ res.title } />
         <span>{res.price}</span>
+        <span>{res.category_id}</span>
       </li>)));
   }
 
   render() {
-    const { produto } = this.props;
+    const { shouldDisplay } = this.props;
+
     const { ifResult, ifNotResult } = this;
     return (
       <div>
-        { !produto ? ifNotResult() : ifResult() }
+        { !shouldDisplay ? ifNotResult() : ifResult() }
       </div>
     );
   }
@@ -38,7 +40,8 @@ class ProductList extends Component {
 
 ProductList.propTypes = {
   resultadoDoPai: PropTypes.arrayOf(PropTypes.object).isRequired,
-  produto: PropTypes.string.isRequired,
+  // product: PropTypes.string.isRequired,
+  shouldDisplay: PropTypes.bool.isRequired,
 };
 
 export default ProductList;

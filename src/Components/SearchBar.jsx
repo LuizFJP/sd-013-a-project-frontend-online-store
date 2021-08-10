@@ -2,23 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      product: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange({ target }) {
-    this.setState({ product: target.value });
-  }
-
   render() {
-    const { alterarEstado } = this.props;
-    const { product } = this.state;
+    const { alterarEstado, handleChange, product } = this.props;
+    // const { product } = this.state;
     return (
       <div>
         <form>
@@ -26,12 +12,12 @@ class SearchBar extends React.Component {
             type="text"
             data-testid="query-input"
             value={ product }
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
           <button
             type="button"
             data-testid="query-button"
-            onClick={ () => alterarEstado(product) }
+            onClick={alterarEstado}
           >
             Pesquisar
           </button>
@@ -44,6 +30,8 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   alterarEstado: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  product: PropTypes.string.isRequired,
 };
 
 export default SearchBar;

@@ -14,10 +14,10 @@ class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const { product } = this.state;
-    Api.getProductsFromCategoryAndQuery('', product)
+    await Api.getProductsFromCategoryAndQuery('', product)
       .then((data) => this.setState({ result: data.results }));
   }
 
@@ -25,35 +25,39 @@ class SearchBar extends React.Component {
     this.setState({ product: target.value });
   }
 
-  render() {
-    const { product, result } = this.state;
-    if (!result) {
-      return (
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>);
-    }
+  ifNotResult = () => (
+    <p data-testid="home-initial-message">
+      Digite algum termo de pesquisa ou escolha uma categoria.
+    </p>
+  );
 
+  ifResult = () => {
+    const { result } = this.state;
+    return (result.map((res) => (
+      <li data-testid="product" key={ res.id }>
+        <h2>{res.title}</h2>
+        <img src={ res.thumbnail } alt={ res.title } />
+        <span>{res.price}</span>
+      </li>)));
+  }
+
+  render() {
+    const { product } = this.state;
+    const { ifResult, ifNotResult } = this;
     return (
       <div>
-        <form onSubmit={ this.handleSubmit }>
+        <form>
           <input
             type="text"
             data-testid="query-input"
             value={ product }
             onChange={ this.handleChange }
           />
-          <button type="button" data-testid="query-button">
+          <button type="button" data-testid="query-button" onClick={ this.handleSubmit }>
             Pesquisar
           </button>
         </form>
-
-        {result.map((res) => (
-          <li data-testid="product" key={ res.id }>
-            <h2>{res.title}</h2>
-            <img src={ res.thumbnail } alt={ res.title } />
-            <span>{res.price}</span>
-          </li>))}
+        { !product ? ifNotResult() : ifResult() }
       </div>
     );
   }

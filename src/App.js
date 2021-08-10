@@ -4,18 +4,19 @@ import './App.css';
 import CarShop from './pages/CarShop';
 import Home from './pages/Home';
 import ListByCategory from './pages/ListByCategory';
+// Luiz Furtado
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Home } />
+        <Route exact path="/carshop" component={ CarShop } />
         <Route
           exact
           path="/:category"
           render={ (props) => <ListByCategory { ...props } /> }
         />
-        <Route exact path="/carshop" component={ CarShop } />
       </Switch>
     </BrowserRouter>
   );

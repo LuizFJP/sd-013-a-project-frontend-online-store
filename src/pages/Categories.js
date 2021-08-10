@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
-// Rodrigo Pova
+// Rodrigo Pova, Luiz Furtado
 
 class Categories extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class Categories extends React.Component {
         {categories.map((category) => (
           <div
             tabIndex="0"
-            role="button" // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+            role="button"
             onClick={ this.handleClick }
             onKeyDown={ this.handleClick }
             key={ category.id }

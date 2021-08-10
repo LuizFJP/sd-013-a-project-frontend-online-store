@@ -30,7 +30,7 @@ class Home extends Component {
         products: [],
       });
       const request = await api.getProductsFromCategoryAndQuery(categoria, inputValue);
-      const produtos = request.results;
+      const produtos = await request.results;
       this.setState({
         products: [...produtos],
         noSearch: false,
@@ -39,9 +39,11 @@ class Home extends Component {
   }
 
   fetchCategory = async (categoria) => {
+    console.log('aumenta array');
     if (categoria) {
       const requisicao = await api.getProductsFromCategoryAndQuery(categoria, false);
-      const produtos = requisicao.results;
+      const produtos = await requisicao.results;
+      console.log('aumenta array');
       this.setState({
         products: [...produtos],
       }, () => this.setState({
@@ -52,10 +54,10 @@ class Home extends Component {
 
   handleChangeCategory = ({ target }) => {
     const { value } = target;
-    const { categoria } = this.state;
+    console.log('handle1');
     this.setState({
       categoria: value,
-    }, () => this.fetchCategory(categoria));
+    }, () => this.fetchCategory(value));
   }
 
   render() {

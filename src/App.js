@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Main from './pages/Main';
-import Cart from './pages/Cart';
+import { Home, Cart } from './pages/pagesIndex';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={ Main } />
-        <Route exact path="/Cart" component={ Cart } />
+        <Route exact path="/" component={ Home } />
+        <Route exact path="/cart" component={ Cart } />
       </Switch>
     </Router>
   );

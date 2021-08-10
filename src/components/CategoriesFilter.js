@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 
-class Category extends Component {
+class CategoriesFilter extends Component {
   constructor(props) {
     super(props);
 
@@ -40,4 +40,4 @@ class Category extends Component {
   }
 }
 
-export default Category;
+export default CategoriesFilter;

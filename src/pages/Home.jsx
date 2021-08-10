@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonAddCart from '../components/ButtonAddCart';
 import CategoriesList from '../components/CategoriesList';
 import ProductList from '../components/ProductList';
 
@@ -7,7 +8,7 @@ class Home extends React.Component {
     return (
       <div>
         <CategoriesList />
-
+        <ButtonAddCart />
         <label htmlFor="input-search">
           <input
             type="text"

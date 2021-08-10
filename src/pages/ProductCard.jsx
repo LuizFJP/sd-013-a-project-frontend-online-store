@@ -27,14 +27,11 @@ class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
-  product: Proptypes.shape(
-    {
-      price: PropTypes.number,
-      title: PropTypes.string,
-      thumbnail: PropTypes.string,
-
-    },
-  ).isRequired,
+  product: PropTypes.shape({
+    price: PropTypes.number,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+  }).isRequired,
 };
 
 export default ProductCard;

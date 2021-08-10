@@ -2,6 +2,8 @@ import React from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import ListProducts from '../components/ListProducts';
 import ButtonAndInputSearch from '../components/ButtonAndInputSearch';
+import CategoriesList from '../components/CategoriesList';
+import ButtonCart from '../components/ButtonCart';
 
 class Home extends React.Component {
   constructor() {
@@ -9,7 +11,7 @@ class Home extends React.Component {
     this.state = {
       search: '',
       result: '',
-      // state: false,
+      state: false,
     };
   }
 
@@ -22,8 +24,8 @@ class Home extends React.Component {
       data = await getProductsFromCategoryAndQuery('$CATEGORY_ID', search);
     }
     this.setState({
-      result: data,
-      // state: true,
+      result: data.results,
+      state: true,
     });
   }
 
@@ -36,16 +38,25 @@ class Home extends React.Component {
   render() {
     const { result, state } = this.state;
     return (
-      <div data-testid="home-initial-message">
-        <ButtonAndInputSearch
-          onChange={ this.onChangeSearch }
-          onClick={ this.requestList }
-        />
+      <div>
+        <div>
+          <ButtonAndInputSearch
+            onChange={ this.onChangeSearch }
+            onClick={ this.requestList }
+          />
+        </div>
         <div>
           {state
             ? result
               .map((product) => <ListProducts key={ product.id } product={ product } />)
             : 'Digite algum termo de pesquisa ou escolha uma categoria.'}
+        </div>
+        <div>
+          <ButtonCart />
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <CategoriesList />
         </div>
       </div>
     );

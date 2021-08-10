@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import SearchBar from './pages/SearchBar';
+import Home from './pages/Home';
 import './App.css';
-import ShoppingCard from './pages/ShoppingCard';
+import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ SearchBar } />
-          <Route path="/shoppingcard" component={ ShoppingCard } />
+          <Route exact path="/" component={ Home } />
+          <Route path="/shoppingcart" component={ ShoppingCart } />
         </Switch>
       </BrowserRouter>
     </div>

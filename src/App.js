@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   addAoCarrinho = (produto) => {
-    this.setState((state) => ({ carrinho: [...state.carrinho, produto]}));
+    this.setState((state) => ({ carrinho: [...state.carrinho, produto] }));
   };
 
   render() {
@@ -23,7 +23,11 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" render={ () => <Home gestorDoCarrinho={ this.addAoCarrinho } />} />
+          <Route
+            exact
+            path="/"
+            render={ () => <Home gestorDoCarrinho={ this.addAoCarrinho } /> }
+          />
           <Route path="/carrinho" render={ () => <Carrinho produtos={ carrinho } /> } />
         </Switch>
       </Router>

@@ -11,7 +11,7 @@ class Produtos extends React.Component {
   }
 
   addAoCarrinho = (produto) => {
-    this.setState((state) => ({ carrinho: [...state.carrinho, produto]}));
+    this.setState((state) => ({ carrinho: [...state.carrinho, produto] }));
   };
 
   renderProduto = (produto) => {
@@ -20,17 +20,17 @@ class Produtos extends React.Component {
 
     return (
       <li key={ id } data-testid="product">
-      <p>{ title }</p>
-      <img src={ thumbnail } alt={ title } />
-      <p>{ price }</p>
-      <button
-        type="button"
-        data-testid="product-add-to-cart"
-        onClick={ () => gestorDoCarrinho(produto) }
-      >
-        Adicionar ao Carrinho
-      </button>
-    </li>
+        <p>{ title }</p>
+        <img src={ thumbnail } alt={ title } />
+        <p>{ price }</p>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => gestorDoCarrinho(produto) }
+        >
+          Adicionar ao Carrinho
+        </button>
+      </li>
     );
   };
 
@@ -52,6 +52,7 @@ Produtos.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   })).isRequired,
+  gestorDoCarrinho: PropTypes.func.isRequired,
 };
 
 export default Produtos;

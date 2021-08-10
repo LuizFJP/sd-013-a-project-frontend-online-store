@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import ProductCard from '../components/ProductCard';
-
 import CategoriesFilter from '../components/CategoriesFilter';
 
 class Main extends Component {

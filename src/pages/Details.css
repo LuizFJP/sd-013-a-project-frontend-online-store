@@ -48,6 +48,10 @@
   width: 200px;
 }
 
+.details-ship {
+  color: rgb(48, 192, 48);
+}
+
 .details-product-description {
   height: 400px;
   overflow: auto;

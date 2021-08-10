@@ -12,6 +12,7 @@ class Details extends Component {
     this.state = {
       loading: true,
       product: {},
+      freeShipping: false,
       description: '',
       cartQuantity: 0,
     };
@@ -61,13 +62,15 @@ class Details extends Component {
 
     const json = await api.getProductsFromCategoryAndQuery(selCat, query);
     const product = json.results.find((item) => item.id === id);
+    const freeShipping = product.shipping.free_shipping;
     const description = (await (await fetch(`https://api.mercadolibre.com/items/${id}/description`)).json()).plain_text;
-    this.setState({ loading: false, product, description });
+    this.setState({ loading: false, product, freeShipping, description });
   }
 
   render() {
-    const { loading, product, description, cartQuantity } = this.state;
-    const { id, title, thumbnail, price, available_quantity: avlQty } = product;
+    const { loading, product, freeShipping, description, cartQuantity } = this.state;
+    const { id, title, thumbnail, price,
+      available_quantity: avlQty } = product;
     return (
       <div className="details-body">
         <header className="details-header">
@@ -85,6 +88,8 @@ class Details extends Component {
                     R$
                     { price.toFixed(2) }
                   </span>
+                  { freeShipping ? <span className="details-ship">FRETE GRÁTIS</span>
+                    : null}
                 </div>
                 <div className="details-product-description">
                   <p>{ description }</p>

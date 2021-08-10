@@ -27,9 +27,10 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { item: { id, title, thumbnail, price, available_quantity: avlQty },
-      selCat,
-      query } = this.props;
+    const { item: { id, title, thumbnail, price,
+      available_quantity: avlQty, shipping: { free_shipping: freeShipping } },
+    selCat,
+    query } = this.props;
     return (
       <div data-testid="product" className="home-product-card">
         <span>{ title }</span>
@@ -38,6 +39,8 @@ class ProductCard extends Component {
           R$
           { price.toFixed(2) }
         </span>
+        { !freeShipping ? null
+          : <span className="home-ship" data-testid="free-shipping">FRETE GRÁTIS</span>}
         <Link
           to={ { pathname: `/details/${id}`, state: { selCat, query } } }
           data-testid="product-detail-link"
@@ -63,6 +66,9 @@ ProductCard.propTypes = {
     id: PropTypes.string,
     price: PropTypes.number,
     available_quantity: PropTypes.number,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
   onClick: PropTypes.func.isRequired,
   selCat: PropTypes.string,

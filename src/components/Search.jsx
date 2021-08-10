@@ -1,22 +1,22 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import classes from '../pages/Home.module.css';
 
-export default class Home extends React.Component {
+export default class Home extends Component {
   render() {
-    const { onSearch } = this.props;
+    const { onClick, onChange, query } = this.props;
     return (
       <form>
         <input
           type="text"
           data-testid="query-input"
           placeholder="Digite sua busca"
+          value={ query }
+          onChange={ onChange }
         />
         <button
           data-testid="query-button"
           type="submit"
-          onClick={ onSearch }
+          onClick={ onClick }
         >
           Buscar
         </button>
@@ -25,6 +25,10 @@ export default class Home extends React.Component {
   }
 }
 
+const { func, string } = PropTypes;
+
 Home.propTypes = {
-  onSearch: PropTypes.func,
+  onClick: func,
+  onChange: func,
+  query: string,
 }.isRequired;

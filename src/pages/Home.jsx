@@ -1,33 +1,61 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import CategoriesList from '../components/CategoriesList';
+import Products from './Products';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import classes from './Home.module.css';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      query: '',
+      category: '',
+      request: false,
+      data: [],
+    };
+
+    this.onClick = this.onClick.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
-  onSearch = (event) => {
-    event.preventDefault();
-    console.log('buscando');
-    alert("clicou");
+  onClick = async (id) => {
+    const { query, category } = this.state;
+    this.setState({
+      category: id,
+      request: true,
+    }, async () => {
+      const data = await getProductsFromCategoryAndQuery(category, query);
+      this.setState({
+        data: data.results,
+        request: false,
+        query: '',
+      });
+    });
+  };
+
+  onChange = ({ target }) => {
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
   };
 
   render() {
-    const { onSearch } = this.onSearch;
+    const { query, data, request } = this.state;
+
     return (
       <main className={ classes.mainContainer }>
-        <CategoriesList />
+        <CategoriesList onClick={ this.onClick } />
         <section className={ classes.contentContainer }>
           <Header />
-          <Search onSearch={ onSearch } />
-          <div className={ classes.productsContainer }>
-            teste
-          </div>
+          <Search
+            onClick={ this.onClick }
+            onChange={ this.onChange }
+            query={ query }
+          />
+          <Products data={ data } request={ request } />
         </section>
       </main>
     );

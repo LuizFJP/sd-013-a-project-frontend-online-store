@@ -1,39 +1,37 @@
 import React from 'react';
-import * as api from '../services/api';
+import PropTypes from 'prop-types';
 import Card from './Card';
+import EmptyList from './EmptyList';
 
 class CardsList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      filteredProducts: [],
-    };
-    this.fetchProducts = this.fetchProducts.bind(this);
+    this.populateCardList = this.populateCardList.bind(this);
   }
 
-  async fetchProducts() {
-    const { searchField } = this.props;
-    const filteredProducts = await api.getProductsFromCategoryAndQuery('', searchField);
+  populateCardList() {
+    const { products } = this.props;
 
-    this.setState({
-      filteredProducts,
-    });
-  }
-
-  async componentDidMount() {
-    this.fetchProducts()
+    return (
+      products.map((product) => (<Card key={ product.id } product={ product } />))
+    );
   }
 
   render() {
-    const { filteredProducts } = this.state;
-    console.log(filteredProducts);
-    return(
-      <div>
-        { filteredProducts.map((product) => (<Card component={ product } />)) }
+    const { searchIsCalled, products } = this.props;
+    const isValid = (products.length !== 0);
+    return (
+      <div className="card-list">
+        { isValid ? this.populateCardList() : <EmptyList validator={ searchIsCalled } /> }
       </div>
     );
   }
 }
+
+CardsList.propTypes = {
+  searchIsCalled: PropTypes.bool.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default CardsList;

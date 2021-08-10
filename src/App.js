@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { getCategories } from './services/api';
 import { SearchBar, Carrinho, LinkParaCarrinho,
   CategoriesContainer } from './Componentes/index';
+import ProductDetails from './Componentes/ProductDetails';
 
 class App extends React.Component {
   constructor() {
@@ -35,6 +36,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route path="/carrinho" component={ Carrinho } />
+            <Route path="/details" component={ ProductDetails } />
             <Route
               exact
               path="/"
@@ -51,6 +53,7 @@ class App extends React.Component {
                     Digite algum termo de pesquisa ou escolha uma categoria.
                   </p>
                   <CategoriesContainer categories={ categories } />
+
                 </div>
               ) }
             />

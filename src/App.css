@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #D7F4FF;
 }
 
@@ -35,7 +35,7 @@ box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   /* background-color: grey; */
-}
+/* } */
 
 .Index p{
   color: #9e9e9e;
@@ -53,6 +53,91 @@ box-sizing: border-box;
 
 .CartButton {
   /* background-color: black; */
+  display: flex;
+  justify-content: center;
+} */
+
+body {
+  background-color: #d7f4ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Category {
+  background-color: #0078a8;
+  border: 3px solid lightgray;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  width: 300px;
+}
+
+.Category option {
+  color: white;
+  list-style: none;
+  margin: 8px 0;
+  padding-left: 30px;
+}
+
+.Category option:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: #f0802b;
+  cursor: pointer;
+  font-size: large;
+  transform: scale(1.1);
+  transition: 0.1s ease-out;
+}
+
+.Index {
+  display: flex;
+  justify-content: space-between;
+
+  /* background-color: grey; */
+}
+
+.Index p {
+  color: #9e9e9e;
+  font-family: serif;
+  font-weight: 100;
+}
+
+.Index img {
+  background-color: #f0802b;
+  border: 3px solid lightgray;
+  border-radius: 20px;
+  height: 40px;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.Index img:hover {
+  background-color: #ffa155;
+  border: 3px solid lightgray;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-top: 5px;
+  transform: scale(1.2);
+  transition: 0.1s ease-out;
+}
+
+.Index img:active {
+  background-color: lightgray;
+  margin-right: 5px;
+  margin-top: 5px;
+  transform: scale(0.9);
+  transition: 0.1s ease-out;
+}
+
+.CartButton {
   display: flex;
   justify-content: center;
 }

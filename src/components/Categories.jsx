@@ -7,6 +7,8 @@ class Categories extends Component {
 
     this.state = {
       categories: [],
+      search: '',
+      categoryId: '',
     };
   }
 
@@ -23,11 +25,13 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.state;
+    const { fetch } = this.props;
 
     return (
       <ul>
         { categories.map((category) => (
           <li
+            onClick={ () => fetch(category.id) }
             data-testid="category"
             key={ category.id }
           >

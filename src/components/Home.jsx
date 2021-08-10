@@ -1,31 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import CategoriesList from './CategoriesList';
+import ProductList from './ProductList';
 
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
       categories: [],
+      inputValue: '',
+      products: [],
     };
     this.categories = this.categories.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.getProduct = this.getProduct.bind(this);
   }
 
   componentDidMount() {
     this.categories();
+    // this.getProduct();
+  }
+
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value,
+    });
+    this.getProduct();
+  }
+
+  async getProduct() {
+    const { inputValue } = this.state;
+    const products = await getProductsFromCategoryAndQuery('', inputValue);
+    this.setState({
+      products,
+    });
   }
 
   async categories() {
     const categories = await getCategories();
-    console.log(categories);
     this.setState({
       categories,
     });
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, products } = this.state;
     return (
       <div>
         <CategoriesList categories={ categories } />
@@ -39,8 +59,11 @@ class Home extends React.Component {
             <input
               type="text"
               id="home-initial-message"
+              data-testid="query-input"
+              onChange={ this.handleChange }
             />
           </label>
+          <button type="button" data-testid="query-button">Pesquisa</button>
           <Link
             to="/cart"
             type="button"
@@ -50,6 +73,7 @@ class Home extends React.Component {
             Cart
           </Link>
         </form>
+        <ProductList products={ products.results } />
       </div>
     );
   }

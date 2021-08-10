@@ -14,7 +14,7 @@ class Home extends React.Component {
 
     this.state = {
       products: [],
-      carrinho: ['QUALQUER COISA'],
+      carrinho: [],
     };
   }
 
@@ -24,8 +24,8 @@ class Home extends React.Component {
   }
 
   addToCart = (product) => {
-    this.setState({ carrinho: [...this.state.carrinho, product] });
-    console.log(this.state.carrinho);
+    const { carrinho } = this.state;
+    this.setState({ carrinho: [...carrinho, product] });
   }
 
   render() {

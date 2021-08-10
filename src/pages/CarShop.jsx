@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ProductCard from './ProductCard';
+import PropTypes from 'prop-types';
+// import ProductCard from './ProductCard';
 
 class CarShop extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const { location: { state: { carrinho } } } = this.props;
@@ -19,13 +20,27 @@ class CarShop extends React.Component {
       );
     }
     return (
-      <div>
-        { carrinho.map((product) => <ProductCard key={ product.id } product={ product } />) }
+      <ul>
+        { carrinho.map((product) => (
+          <li data-testid="shopping-cart-product-name" key={ product.id }>
+            {product.title}
+            <span data-testid="shopping-cart-product-quantity">
+              1
+            </span>
+          </li>
+        ))}
         <Link to="/">Voltar</Link>
-      </div>
-
+      </ul>
     );
   }
 }
+
+CarShop.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      carrinho: PropTypes.arrayOf(PropTypes.object),
+    }),
+  }).isRequired,
+};
 
 export default CarShop;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ProductCard extends Component {
-  onClick = (e) => {
+  onClick = () => {
     // e.preventDefault();
     const { addToCart, product } = this.props;
     addToCart(product);

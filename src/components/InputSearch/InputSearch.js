@@ -10,13 +10,8 @@ export default class InputSearch extends Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <ul
-          data-testid="category"
-          className="category"
-        >
-          <Categories />
-        </ul>
         <input type="text" />
+        <Categories />
       </div>
     );
   }

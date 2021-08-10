@@ -4,6 +4,7 @@ import { getCategories } from '../../services/api';
 export default class Categories extends React.Component {
   constructor() {
     super();
+    this.state = { cat: [] };
 
     this.componentDidMount = this.componentDidMount.bind(this);
     this.showCategories = this.showCategories.bind(this);
@@ -16,17 +17,18 @@ export default class Categories extends React.Component {
   async showCategories() {
     const arrObjsCat = await getCategories();
     const arrNamesCat = arrObjsCat.map((Obj) => Obj.name);
-    arrNamesCat.forEach((name) => {
-      const LI = document.createElement('li');
-      LI.innerText = name;
-      console.log(LI);
-    });
+    this.setState({ cat: arrNamesCat });
+    const { cat } = this.state;
+    console.log(cat);
   }
 
   render() {
+    const { cat } = this.state;
     return (
       <ul className="category">
-        a
+        {cat.map((value) => (
+          <li data-testid="category" key="cat">{value}</li>
+        ))}
       </ul>
     );
   }

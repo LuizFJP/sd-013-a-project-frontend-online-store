@@ -15,6 +15,7 @@ class Home extends React.Component {
 
   fetchApi = async () => {
     const { selectCategory } = this.state;
+    console.log(selectCategory);
     const searchProduct = document.querySelector('.search-input').value;
     const json = await api.getProductsFromCategoryAndQuery(selectCategory, searchProduct);
 
@@ -34,11 +35,19 @@ class Home extends React.Component {
     }
   }
 
+  searchCategory = async (id) => {
+    console.log(id);
+    this.setState({
+      selectCategory: id,
+    });
+    this.fetchApi();
+  }
+
   render() {
     const { itemList } = this.state;
     return (
       <div>
-        <List />
+        <List callback={ this.searchCategory } />
         <form>
           <label htmlFor="text">
             <input

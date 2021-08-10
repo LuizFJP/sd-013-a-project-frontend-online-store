@@ -61,7 +61,7 @@ class Home extends React.Component {
                 data-testid="query-input"
               />
               <button data-testid="query-button" onClick={ this.fetchApi } type="button">
-                <span>PESQUISAR</span>
+                PESQUISAR
               </button>
             </label>
             <Link

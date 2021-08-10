@@ -12,7 +12,7 @@ export async function getCategories() {
 // Rodrigo Pova, Luiz Furtado, Danilo Uehara, Felipe Chagas, Filipe Candido
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   try {
-    const request = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}_ID&q=${query}`);
+    const request = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`);
     const results = await request.json();
     return results;
   } catch (error) {

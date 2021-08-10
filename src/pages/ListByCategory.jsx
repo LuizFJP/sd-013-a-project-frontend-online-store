@@ -1,33 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Home from './Home';
 import * as API from '../services/api';
 
 class ListByCategory extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      category: '',
-    };
+  test = async () => {
+    await API.getProductsFromCategoryAndQuery('categoryId', 'query');
   }
 
   componentDidMount() {
-    this.fetchByCategory();
-  }
-
-  fetchByCategory = async () => {
-    const { match: { params: { category } } } = this.props;
-    const request = await API.getProductsFromCategoryAndQuery(category, '');
-    this.setState({
-      category: request,
-    });
+    this.test();
   }
 
   render() {
-    const { category } = this.state;
     return (
-      <p>
-        Em desenvolvimento
-        {category}
-      </p>
+      <Home />
     );
   }
 }

@@ -23,7 +23,7 @@ class Home extends React.Component {
   handleChange({ target }) {
     this.setState({
       product: target.value,
-      shouldDisplay: target.value.length > 0
+      shouldDisplay: target.value.length > 0,
     });
   }
 
@@ -42,30 +42,29 @@ class Home extends React.Component {
         // console.log(data.results);
         this.setState({
           resultadoDoPai: data.results,
-          product: product,
           shouldDisplay: true,
-        })
+        });
       });
   }
 
   render() {
     const { resultadoDoPai, product, shouldDisplay } = this.state;
     return (
-      <div style={{display: 'flex'}}>
+      <div style={ { display: 'flex' } }>
         <SideBar filter={ this.filter } />
-        <main style={{display: 'flex', flexDirection: 'column'}}>
+        <main style={ { display: 'flex', flexDirection: 'column' } }>
           <div>
             <SearchBar
               alterarEstado={ this.alterarEstado }
-              handleChange={this.handleChange}
-              product={product}
+              handleChange={ this.handleChange }
+              product={ product }
             />
             <Link to="/cart" data-testid="shopping-cart-button">Shopping Cart</Link>
           </div>
           <ProductList
-          resultadoDoPai={ resultadoDoPai }
-          product={ product }
-          shouldDisplay={ shouldDisplay }
+            resultadoDoPai={ resultadoDoPai }
+            product={ product }
+            shouldDisplay={ shouldDisplay }
           />
         </main>
       </div>

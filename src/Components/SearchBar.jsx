@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
           <button
             type="button"
             data-testid="query-button"
-            onClick={alterarEstado}
+            onClick={ alterarEstado }
           >
             Pesquisar
           </button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
 // Rodrigo Pova
 
@@ -30,20 +31,30 @@ class Categories extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <ul>
+      <section>
         {categories.map((category) => (
-          <li key={ category.id } data-testid="category">
+          <div
+            tabIndex="0"
+            role="button" // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+            onClick={ this.handleClick }
+            onKeyDown={ this.handleClick }
+            key={ category.id }
+            data-testid="category"
+          >
             <Link
-              onClick={ this.handleClick }
               category={ category.id }
               to={ `/${category.id}` }
             >
               {category.name}
             </Link>
-          </li>))}
-      </ul>
+          </div>))}
+      </section>
     );
   }
 }
+
+Categories.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Categories;

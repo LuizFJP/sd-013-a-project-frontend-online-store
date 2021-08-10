@@ -1,4 +1,5 @@
 import React from 'react';
+import CategoriesList from '../components/CategoriesList';
 import ButtonCart from '../components/ButtonCart';
 
 class Home extends React.Component {
@@ -9,6 +10,7 @@ class Home extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <CategoriesList />
       </div>
     );
   }

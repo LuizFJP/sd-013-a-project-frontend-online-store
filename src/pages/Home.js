@@ -4,7 +4,7 @@ import * as api from '../services/api';
 import ProductCard from '../components/ProductCard';
 import CategoriesFilter from '../components/CategoriesFilter';
 
-class Main extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -90,4 +90,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Home;

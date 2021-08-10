@@ -1,14 +1,27 @@
 h3 {
   margin-left: 40px;
+  text-align: center;
+  width: 260px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
 }
 
 li {
   list-style: none;
   margin-bottom: 5px;
   border-bottom: 1px solid black;
+  padding: 8px;
+}
+
+li:hover {
+  background-color: rgb(224, 224, 224);
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .categories {
+  border: 1px solid black;
   margin-left: 40px;
-  width: fit-content;
+  width: 260px;
 }

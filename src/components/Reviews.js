@@ -17,12 +17,7 @@ class Reviews extends Component {
   RenderReviews = () => {
     const { id } = this.props;
 
-    console.log(id);
-
-    if (!localStorage.getItem(id)) {
-      console.log('picanha');
-      return;
-    }
+    if (!localStorage.getItem(id)) return;
 
     const reviews = JSON.parse(localStorage[id]);
 

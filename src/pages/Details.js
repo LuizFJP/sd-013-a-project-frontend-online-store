@@ -59,32 +59,34 @@ class Details extends Component {
           <CartButton />
         </header>
         {!loading && (
-          <div className="details-outercontainer">
-            <div className="details-innercontainer">
-              <div className="details-product-info">
-                <span data-testid="product-detail-name">{ title }</span>
-                <img src={ thumbnail } alt={ title } />
-                <span>
-                  R$
-                  { price.toFixed(2) }
-                </span>
+          <>
+            <div className="details-outercontainer">
+              <div className="details-innercontainer">
+                <div className="details-product-info">
+                  <span data-testid="product-detail-name">{ title }</span>
+                  <img src={ thumbnail } alt={ title } />
+                  <span>
+                    R$
+                    { price.toFixed(2) }
+                  </span>
+                </div>
+                <div className="details-product-description">
+                  <p>{ description }</p>
+                </div>
               </div>
-              <div className="details-product-description">
-                <p>{ description }</p>
-              </div>
+              <button
+                className="details-addToCart-btn"
+                data-testid="product-detail-add-to-cart"
+                type="button"
+                onClick={ () => this.setLocalStorage(id, title, price) }
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
-            <button
-              className="details-addToCart-btn"
-              data-testid="product-detail-add-to-cart"
-              type="button"
-              onClick={ () => this.setLocalStorage(id, title, price) }
-            >
-              Adicionar ao carrinho
-            </button>
-          </div>
+            <ReviewForm id={ id } />
+            <Reviews id={ id } />
+          </>
         )}
-        <ReviewForm id={ id } />
-        <Reviews id={ id } />
       </div>
     );
   }

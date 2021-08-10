@@ -26,7 +26,13 @@ class ReviewForm extends Component {
 
     if (localStorage[id]) {
       const reviewArray = JSON.parse(localStorage[id]);
-      localStorage[id] = JSON.stringify([...reviewArray, review]);
+      const filteredReviews = reviewArray.filter((r) => {
+        if (r.email === review.id) {
+          return false;
+        }
+        return true;
+      });
+      localStorage[id] = JSON.stringify([...filteredReviews, review]);
     } else {
       localStorage[id] = JSON.stringify([review]);
     }

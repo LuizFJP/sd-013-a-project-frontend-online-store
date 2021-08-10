@@ -4,6 +4,8 @@ import { getCategories, getProductsFromCategoryAndQuery } from '../services/api'
 import CategoriesList from './CategoriesList';
 import ProductList from './ProductList';
 
+// coment
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -19,7 +21,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.categories();
-    // this.getProduct();
   }
 
   handleChange(event) {
@@ -39,6 +40,7 @@ class Home extends React.Component {
 
   async categories() {
     const categories = await getCategories();
+    console.log(categories);
     this.setState({
       categories,
     });

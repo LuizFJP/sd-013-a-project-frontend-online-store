@@ -1,5 +1,6 @@
 import React from 'react';
 import CategoriesList from '../components/CategoriesList';
+import ProductList from '../components/ProductList';
 
 class Home extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <ProductList />
       </div>
     );
   }

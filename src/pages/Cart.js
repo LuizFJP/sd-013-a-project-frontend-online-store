@@ -16,10 +16,13 @@ class Cart extends Component {
   }
 
   retrieveLocalStorage = () => {
-    if (!localStorage.cart || localStorage.cart === '[]') return;
+    if (!localStorage.cart || localStorage.cart === '[]') {
+      this.setState({ empty: true });
+      return;
+    }
 
     const cart = JSON.parse(localStorage.cart);
-    const cartList = cart.map(({ id, title, price, quantity }) => (
+    const cartList = cart.map(({ id, title, price, quantity, avlQty }) => (
       <div className="cart-item-container" key={ id }>
         <p data-testid="shopping-cart-product-name">{title}</p>
         <p>
@@ -41,6 +44,7 @@ class Cart extends Component {
           data-testid="product-increase-quantity"
           type="button"
           onClick={ () => this.ChangeQty(id, '+') }
+          disabled={ quantity === avlQty }
         >
           +
         </button>

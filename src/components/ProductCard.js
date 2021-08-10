@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
-  setLocalStorage = (id, title, price) => {
-    const product = { id, title, price, quantity: 1 };
+  setLocalStorage = (id, title, price, avlQty) => {
+    const product = { id, title, price, quantity: 1, avlQty };
     const { onClick } = this.props;
 
     if (localStorage.cart) {
@@ -12,6 +12,9 @@ class ProductCard extends Component {
       const filteredCart = cart.filter((item) => {
         if (item.id === product.id) {
           product.quantity = item.quantity + 1;
+          if (product.quantity > avlQty) {
+            product.quantity = avlQty;
+          }
           return false;
         }
         return true;
@@ -24,7 +27,9 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { item: { id, title, thumbnail, price }, selCat, query } = this.props;
+    const { item: { id, title, thumbnail, price, available_quantity: avlQty },
+      selCat,
+      query } = this.props;
     return (
       <div data-testid="product" className="home-product-card">
         <span>{ title }</span>
@@ -42,7 +47,7 @@ class ProductCard extends Component {
         <button
           data-testid="product-add-to-cart"
           type="button"
-          onClick={ () => this.setLocalStorage(id, title, price) }
+          onClick={ () => this.setLocalStorage(id, title, price, avlQty) }
         >
           Adicionar ao carrinho
         </button>
@@ -57,10 +62,15 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
     id: PropTypes.string,
     price: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
-  selCat: PropTypes.string.isRequired,
+  selCat: PropTypes.string,
   query: PropTypes.string.isRequired,
+};
+
+ProductCard.defaultProps = {
+  selCat: '',
 };
 
 export default ProductCard;

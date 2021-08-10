@@ -22,14 +22,17 @@ class Details extends Component {
     this.CartQuantity();
   }
 
-  setLocalStorage = (id, title, price) => {
-    const product = { id, title, price, quantity: 1 };
+  setLocalStorage = (id, title, price, avlQty) => {
+    const product = { id, title, price, quantity: 1, avlQty };
 
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.cart);
       const filteredCart = cart.filter((item) => {
         if (item.id === product.id) {
           product.quantity = item.quantity + 1;
+          if (product.quantity > avlQty) {
+            product.quantity = avlQty;
+          }
           return false;
         }
         return true;
@@ -64,7 +67,7 @@ class Details extends Component {
 
   render() {
     const { loading, product, description, cartQuantity } = this.state;
-    const { id, title, thumbnail, price } = product;
+    const { id, title, thumbnail, price, available_quantity: avlQty } = product;
     return (
       <div className="details-body">
         <header className="details-header">
@@ -91,7 +94,7 @@ class Details extends Component {
                 className="details-addToCart-btn"
                 data-testid="product-detail-add-to-cart"
                 type="button"
-                onClick={ () => this.setLocalStorage(id, title, price) }
+                onClick={ () => this.setLocalStorage(id, title, price, avlQty) }
               >
                 Adicionar ao carrinho
               </button>

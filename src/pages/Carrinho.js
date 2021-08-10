@@ -1,9 +1,23 @@
 import React from 'react';
 
 class Carrinho extends React.Component {
-  render() {
+  renderProduto = ({ id, title, thumbnail, price }) => {
     return (
-      <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+      <li key={ id }>
+        <p data-testid="shopping-cart-product-name">{ title }</p>
+        <p data-testid="shopping-cart-product-quantity">1</p>
+      </li>
+    );
+  }
+
+  render() {
+    const { produtos } = this.props;
+
+    return (
+      <section>
+        <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+        { produtos.map((produto) => this.renderProduto(produto)) }
+      </section>
     );
   }
 }

@@ -29,6 +29,7 @@ class Home extends Component {
 
   render() {
     const { produtos } = this.state;
+    const { gestorDoCarrinho } = this.props;
 
     return (
       <main>
@@ -53,7 +54,7 @@ class Home extends Component {
         </p>
         <div>
           <Categorias />
-          <Produtos produtos={ produtos } />
+          <Produtos produtos={ produtos } gestorDoCarrinho={ gestorDoCarrinho }  />
         </div>
       </main>
     );

@@ -84,7 +84,7 @@ class Main extends Component {
         </button>
         { noSearch ? facaUmaBusca : showProducts }
         <Link to="/Cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
-        <CategoriesFilter onClick={ this.handleChangeCategory } />
+        <CategoriesFilter onChange={ this.handleChangeCategory } />
       </div>
     );
   }

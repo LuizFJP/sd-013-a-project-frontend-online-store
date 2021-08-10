@@ -24,7 +24,7 @@ class CategoriesFilter extends Component {
 
   render() {
     const { categorias } = this.state;
-    const { onClick } = this.props;
+    const { onChange } = this.props;
 
     return (
       <aside>
@@ -38,7 +38,7 @@ class CategoriesFilter extends Component {
                   id={ category.name }
                   name="categoria"
                   value={ category.id }
-                  onClick={ onClick }
+                  onChange={ onChange }
                 />
                 {category.name}
               </li>))

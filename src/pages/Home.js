@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import Categorias from './Categorias';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   render() {
@@ -9,6 +11,7 @@ class Home extends Component {
           type="text"
           className="campo-de-busca"
         />
+        <Link to="/carrinho" data-testid="shopping-cart-button">Carrinho</Link>
         <p
           data-testid="home-initial-message"
         >

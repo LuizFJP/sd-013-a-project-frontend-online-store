@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Searchbar from './Searchbar';
 
 class Body extends Component {
@@ -23,6 +24,12 @@ class Body extends Component {
     const { searchbarText } = this.state;
     return (
       <div>
+        <Link
+          data-testid="shopping-cart-button"
+          to="/shopping-cart"
+        >
+          Carrinho de compras
+        </Link>
         <Searchbar textoSearchbar={ searchbarText } handleChange={ this.handleChange } />
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

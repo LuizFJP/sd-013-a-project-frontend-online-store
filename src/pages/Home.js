@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import ProductCard from '../components/ProductCard';
 
 import CategoriesFilter from '../components/CategoriesFilter';
 
@@ -58,13 +59,13 @@ class Main extends Component {
   render() {
     const { inputValue, inCart, noSearch, products } = this.state;
 
-    const showProducts = (products.map((product) => <ProductCard key={ product.id } product={ product } /> ));
+    const showProducts = (products.map((product) => <ProductCard key={ product.id } product={ product } />));
 
     const facaUmaBusca = (
       <p data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>
-    )
+    );
 
     return (
       <div>

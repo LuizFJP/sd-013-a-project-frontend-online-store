@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 // https://www.valentinog.com/blog/await-react/
@@ -24,6 +25,7 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.state;
+    const { handleChange } = this.props;
     return (
       <div className="category-bar">
         <p>Categorias:</p>
@@ -36,8 +38,10 @@ class Categories extends Component {
           >
             <input
               type="radio"
-              name="category-item"
+              name="category"
               id="category-item"
+              value={ id }
+              onChange={ handleChange }
             />
             { name }
           </label>
@@ -46,5 +50,9 @@ class Categories extends Component {
     );
   }
 }
+
+Categories.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default Categories;

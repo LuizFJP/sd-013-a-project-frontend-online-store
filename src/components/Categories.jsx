@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import './components.css';
 
 class Categories extends Component {
   constructor() {
@@ -7,8 +9,6 @@ class Categories extends Component {
 
     this.state = {
       categories: [],
-      search: '',
-      categoryId: '',
     };
   }
 
@@ -28,19 +28,26 @@ class Categories extends Component {
     const { fetch } = this.props;
 
     return (
-      <ul>
+      <div className="buttons">
         { categories.map((category) => (
-          <li
+          <button
+            className="button"
+            type="button"
             onClick={ () => fetch(category.id) }
+            onKeyDown={ () => fetch(category.id) }
             data-testid="category"
             key={ category.id }
           >
             {category.name}
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
     );
   }
 }
+
+Categories.propTypes = {
+  fetch: PropTypes.func.isRequired,
+};
 
 export default Categories;

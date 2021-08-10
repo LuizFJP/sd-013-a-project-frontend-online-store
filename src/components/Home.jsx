@@ -4,6 +4,8 @@ import { getCategories, getProductsFromCategoryAndQuery } from '../services/api'
 import CategoriesList from './CategoriesList';
 import ProductList from './ProductList';
 
+// coment
+
 class Home extends React.Component {
   constructor() {
     super();

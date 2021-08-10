@@ -17,7 +17,6 @@ class Categorias extends Component {
 
   setCategorias = async () => {
     const categoriasJson = await getCategories();
-    console.log(categoriasJson);
     this.setState({ categorias: categoriasJson });
   }
 

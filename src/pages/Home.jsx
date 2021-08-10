@@ -11,7 +11,6 @@ export default class Home extends Component {
     super(props);
     this.state = {
       searchInput: '',
-      category: '',
       searchResults: [],
     };
   }
@@ -21,9 +20,10 @@ export default class Home extends Component {
     this.setState({ [name]: value });
   }
 
-  handleClick = () => {
-    const { searchInput, category } = this.state;
-    api.getProductsFromCategoryAndQuery(category, searchInput)
+  handleClick = (id) => {
+    const { searchInput } = this.state;
+    console.log(id);
+    api.getProductsFromCategoryAndQuery(id, searchInput)
       .then((resolve) => this.setState({ searchResults: resolve.results }));
   }
 
@@ -60,7 +60,7 @@ export default class Home extends Component {
             <FaSearch />
           </button>
         </div>
-        <Categories />
+        <Categories onClick={ this.handleClick } />
         <main>
           <Results searchResults={ searchResults } />
         </main>

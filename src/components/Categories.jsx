@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../style.css/categories.css';
 import * as api from '../services/api';
 
@@ -17,13 +18,14 @@ class Categories extends React.Component {
       loading: false }));
   }
 
-  UpdateProduct = (event) => {    
-    api.getCategories().then((product) => product.filter()
-    }
-
+  UpdateProduct = (id) => {
+    const { onClick } = this.props;
+    onClick(id);
+  }
 
   render() {
     const { categories, loading } = this.state;
+
     if (loading) {
       return <p>Carregando...</p>;
     }
@@ -36,14 +38,25 @@ class Categories extends React.Component {
               <li
                 key={ categorie.id }
                 data-testid="category"
-                onClick={ this.UpdateProduct }
+                className="button-Categorie"
+
               >
-                {categorie.name}
+                <button
+                  onClick={ () => this.UpdateProduct(categorie.id) }
+                  type="button"
+                >
+                  {categorie.name}
+                </button>
+
               </li>))}
         </ol>
       </div>
     );
   }
 }
+
+Categories.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Categories;

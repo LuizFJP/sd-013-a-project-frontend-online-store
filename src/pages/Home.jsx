@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import * as API from '../services/api';
-import { Link } from 'react-router-dom';
 import Categories from './Categories';
 import imgCarShop from '../image/shopping-cart_icon-icons.com_60593.svg';
 // Rodrigo Pova, Luiz Furtado, Filipe Cândido, Felipe Chagas, Danilo Uehara

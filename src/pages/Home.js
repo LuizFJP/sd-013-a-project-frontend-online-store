@@ -13,7 +13,7 @@ class Main extends Component {
       products: [],
       inCart: 0,
     };
-  };
+  }
 
   handleChangeInput = ({ target }) => {
     const { value } = target;
@@ -26,31 +26,32 @@ class Main extends Component {
     const { inputValue, categoria } = this.state;
     if (inputValue) {
       this.setState({
-        products: []
-      })
-      const request = await api.getProductsFromCategoryAndQuery(categoria, inputValue)
+        products: [],
+      });
+      const request = await api.getProductsFromCategoryAndQuery(categoria, inputValue);
       const produtos = request.results;
-        this.setState({
-          products: [...produtos],
-          noSearch: false,
-        });
-    };
+      this.setState({
+        products: [...produtos],
+        noSearch: false,
+      });
+    }
   }
 
   render() {
     return (
       <div>
-        <input 
-        data-testid="query-input" 
-        type="text"
-        name="product-search"
-        onChange={ this.handleChangeInput }
-        value={ inputValue }
-         />
-        <button 
-        data-testid="query-button" 
-        onClick={ this.requestProducts } 
-        type="button">
+        <input
+          data-testid="query-input"
+          type="text"
+          name="product-search"
+          onChange={ this.handleChangeInput }
+          value={ inputValue }
+        />
+        <button
+          data-testid="query-button"
+          onClick={ this.requestProducts }
+          type="button"
+        >
           Buscar
         </button>
         <p data-testid="home-initial-message">

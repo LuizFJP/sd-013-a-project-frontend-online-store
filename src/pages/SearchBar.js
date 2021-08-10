@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Components/Button';
 
 class SearchBar extends React.Component {
   render() {
@@ -8,6 +9,10 @@ class SearchBar extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
           <input type="text" id="initial-message" />
         </label>
+
+        <div>
+          <Button />
+        </div>
       </div>
     );
   }

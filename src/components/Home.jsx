@@ -19,7 +19,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.categories();
-    // this.getProduct();
   }
 
   handleChange(event) {
@@ -39,6 +38,7 @@ class Home extends React.Component {
 
   async categories() {
     const categories = await getCategories();
+    console.log(categories);
     this.setState({
       categories,
     });

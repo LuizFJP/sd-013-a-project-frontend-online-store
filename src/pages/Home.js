@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import * as api from '../services/api';
 
 import CategoriesFilter from '../components/CategoriesFilter';
 
@@ -38,7 +38,6 @@ class Main extends Component {
       });
     }
   }
-
 
   handleChangeCategory = ({ target }) => {
     const { value } = target;

@@ -4,17 +4,56 @@
   padding: 0;
 }
 
-h1 {
+footer {
   background-color: rgba(254, 230, 0, 255);
   color: rgba(45, 48, 107, 255);
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+footer a {
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+footer a:visited {
+  color: rgba(45, 48, 107, 255);
+}
+
+header {
+  background-color: rgba(254, 230, 0, 255);
   display: flex;
   justify-content: center;
+}
+
+h1 {
+  color: rgba(45, 48, 107, 255);
+  font-size: 40px;
   padding: 20px;
+  text-align: center;
+}
+
+.cart {
+  color: gray;
+  height: 80px;
+  width: 40px;
+}
+
+.cart:hover {
+  width: 50px;
+}
+
+.searchArea {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .searchBar {
   border-radius: 8px;
-  margin: auto;
+  height: 30px;
+  margin: 15px;
   text-align: center;
-  width: 200px;
+  width: 600px;
 }

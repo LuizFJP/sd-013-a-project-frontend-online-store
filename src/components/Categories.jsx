@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style.css/categories.css';
 import * as api from '../services/api';
 
 class Categories extends React.Component {
@@ -29,7 +30,7 @@ class Categories extends React.Component {
     return (
       <div>
         <h3>Categorias: </h3>
-        <ol>
+        <ol className="categories">
           {categories
             .map((categorie) => (
               <li

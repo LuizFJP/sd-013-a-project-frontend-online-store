@@ -6,7 +6,7 @@ class Card extends React.Component {
   render() {
     const { product: { title, price, thumbnail, id } } = this.props;
     return (
-      <Link to={ `/details/${id}` }>
+      <Link to={ { pathname: `/details/${id}`, state: title } }>
         <div data-testid="product" className="card-item">
           <p>{ title }</p>
           <img src={ thumbnail } alt={ `imagem de(o) ${title}` } />

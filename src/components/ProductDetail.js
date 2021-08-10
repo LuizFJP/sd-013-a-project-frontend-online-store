@@ -17,16 +17,13 @@ class ProductDetail extends React.Component {
   }
 
   async fetchProduct() {
-    const { match: { params: { id } } } = this.props;
-    // const parameters = identification.split('-');
-    // const title = parameters[0];
-    // const id = parameters[1];
-    console.log(id);
-    // console.log(title);
-    const { results } = await api.getProductsFromCategoryAndQuery('', id);
-    console.log(results);
-    // const product = results.find((item) => item.id === id);
-    console.log(product);
+    const {
+      location: { state: title },
+      match: { params: { id } },
+    } = this.props;
+
+    const { results } = await api.getProductsFromCategoryAndQuery('', title);
+    const product = results.find((item) => item.id === id);
 
     this.setState({
       product,
@@ -34,11 +31,11 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product: { title, price, thumbnail } } = this.state;
     return (
       <div>
-        <p>{`${product.title} - R$${product.price}`}</p>
-        <img src="" alt="" />
+        <p>{`${title} - R$${price}`}</p>
+        <img src={ thumbnail } alt="" />
         <h3>Especificações Técnicas</h3>
         <ul>
           <li>s</li>

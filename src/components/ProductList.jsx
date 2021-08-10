@@ -1,14 +1,15 @@
 import React from 'react';
 import * as api from '../services/api';
+import { ProductItem } from '.';
 
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state ={
+    this.state = {
       products: [],
-      found: true,
     };
+    this.getProduct = this.getProduct.bind(this);
   }
 
   componentDidMount() {
@@ -16,7 +17,8 @@ class ProductList extends React.Component {
   }
 
   async getProduct() {
-    const productAPI = await api.getProductsFromCategoryAndQuery();
+    const { categoryId, query } = this.props;
+    const productAPI = await api.getProductsFromCategoryAndQuery(categoryId, query);
 
     this.setState({
       products: productAPI,
@@ -24,27 +26,13 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { found, products } = this.state;
-    if (!found) return <p>Nenhum produto foi encontrado</p>;
+    const { products } = this.state;
+    // if (!found) return <p>Nenhum produto foi encontrado</p>;
     return (
       <div>
-        <label htmlFor="Product-Search">
-          <input
-            type="text"
-            data-testid="query-input"
-            name="Product-Search"
-          />
-          <button
-            type="submit"
-            data-testid="query-button"
-            name="Product-Search"
-          >
-            Buscar:
-          </button>
-        </label>
-        <div>
-          {/* { products.map((product) => )} */}
-        </div>
+        {products.map((product) => (
+          <ProductItem product={ product } key={ product.id } />
+        ))}
       </div>
     );
   }

@@ -1,7 +1,5 @@
 import React from 'react';
-import ButtonAddCart from '../components/ButtonAddCart';
-import CategoriesList from '../components/CategoriesList';
-import ProductList from '../components/ProductList';
+import { ButtonAddCart, ProductList, CategoriesList } from '../components';
 
 class Home extends React.Component {
   render() {

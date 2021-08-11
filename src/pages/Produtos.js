@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 class Produtos extends React.Component {
 
-
   renderProduto = (produto) => {
     const { id, title, thumbnail, price } = produto;
     const { gestorDoCarrinho } = this.props;

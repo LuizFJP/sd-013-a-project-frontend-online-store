@@ -44,7 +44,7 @@ export default class Categories extends Component {
         Categoria Selecionada:
         { selectedCategory }
         {categories.map(({ name }) => (
-          <div key={ name }>
+          <div data-testid="category" key={ name }>
             <label htmlFor={ name }>
               <input
                 id={ name }

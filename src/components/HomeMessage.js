@@ -47,11 +47,11 @@ class HomeMessage extends React.Component {
               Buscar
             </button>
             <Link to="/cart" data-testid="shopping-cart-button" className="cartImg">
-              <img src={ cartImg } />
+              <img src={ cartImg } alt="Imagem de carrinho" />
             </Link>
           </div>
           <div className="card-grid">
-            { botaoClicado ? <ListProduct produtos={ produtos } />: msgInicial }
+            { botaoClicado ? <ListProduct produtos={ produtos } /> : msgInicial }
           </div>
         </div>
       </div>

@@ -21,13 +21,11 @@ class Home extends React.Component {
     const { selectedCate } = this.state;
     const query = document.querySelector('.inputSearch').value;
     const json = await getProductsFromCategoryAndQuery(selectedCate, query);
-
+    console.log(json);
     const products = json.results.map((product) => (
       <Product
         key={ product.id }
-        title={ product.title }
-        img={ product.thumbnail }
-        price={ product.price }
+        product={ product }
       />
     ));
 
@@ -56,7 +54,6 @@ class Home extends React.Component {
         </button>
         <input
           className="inputSearch"
-          onChange={ this.productList }
           data-testid="query-input"
           type="text"
         />

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class CategorieButton extends Component {
   render() {
-    const { categorie } = this.props
+    const { categorie } = this.props;
     return (
       <div data-testid="category">
         { categorie.name }
@@ -13,7 +13,9 @@ class CategorieButton extends Component {
 }
 
 CategorieButton.propTypes = {
-
+  categorie: PropTypes.objectOf({
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default CategorieButton;

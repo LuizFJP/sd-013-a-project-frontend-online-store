@@ -49,21 +49,29 @@ class Body extends Component {
         >
           Carrinho de compras
         </Link>
-        <Searchbar textoSearchbar={ searchbarText } handleChange={ this.handleChange } handleClick={ this.handleClick } />
+        <Searchbar
+          textoSearchbar={ searchbarText }
+          handleChange={ this.handleChange }
+          handleClick={ this.handleClick }
+        />
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
         <div>
           { categories
-            .map((categorie) => <CategorieButton key={ categorie.name } id={ categorie.id }
+            .map((categorie) => (<CategorieButton
+              key={ categorie.name }
+              id={ categorie.id }
               categorie={ categorie }
-            />)}
+            />))}
         </div>
         <div>
           { storeItems
-            .map((item) => <ProductCard key={ item.title } id={ item.id }
+            .map((item) => (<ProductCard
+              key={ item.title }
+              id={ item.id }
               item={ item }
-            />)}
+            />))}
         </div>
       </div>
     );

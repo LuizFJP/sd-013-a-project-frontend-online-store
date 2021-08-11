@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Carrinho from './pages/Carrinho';
 
 import Home from './pages/Home';
+import ProdutoDetalhado from './pages/ProdutoDetalhado';
 
 class App extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class App extends React.Component {
 
     this.state = {
       carrinho: [],
+      produtoClicado: '',
     };
   }
 
@@ -17,8 +19,19 @@ class App extends React.Component {
     this.setState(({ carrinho }) => ({ carrinho: [...carrinho, produto] }));
   };
 
+  guardaProdutoClicado = (produto) => {
+    this.setState({ produtoClicado: produto });
+  }
+
+  renderHome = () => (
+    <Home
+      gestorDoCarrinho={ this.addAoCarrinho }
+      guardaProdutoClicado={ this.guardaProdutoClicado }
+    />
+  );
+
   render() {
-    const { carrinho } = this.state;
+    const { carrinho, produtoClicado } = this.state;
 
     return (
       <Router>
@@ -26,9 +39,13 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ () => <Home gestorDoCarrinho={ this.addAoCarrinho } /> }
+            render={ () => this.renderHome() }
           />
           <Route path="/carrinho" render={ () => <Carrinho produtos={ carrinho } /> } />
+          <Route
+            path="/produto/:id"
+            render={ () => <ProdutoDetalhado produto={ produtoClicado } /> }
+          />
         </Switch>
       </Router>
     );

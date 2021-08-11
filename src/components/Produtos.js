@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Produtos extends React.Component {
   renderProduto = (produto) => {
     const { id, title, thumbnail, price } = produto;
-    const { gestorDoCarrinho } = this.props;
+    const { gestorDoCarrinho, guardaProdutoClicado } = this.props;
 
     return (
       <li key={ id } data-testid="product">
@@ -18,6 +19,13 @@ class Produtos extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+        <Link
+          to={ `/produto/${id}` }
+          onClick={ () => guardaProdutoClicado(produto) }
+          data-testid="product-detail-link"
+        >
+          Ver Detalhes
+        </Link>
       </li>
     );
   };
@@ -41,6 +49,7 @@ Produtos.propTypes = {
     price: PropTypes.number.isRequired,
   })).isRequired,
   gestorDoCarrinho: PropTypes.func.isRequired,
+  guardaProdutoClicado: PropTypes.func.isRequired,
 };
 
 export default Produtos;

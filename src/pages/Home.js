@@ -36,7 +36,7 @@ class Home extends Component {
 
   render() {
     const { produtos } = this.state;
-    const { gestorDoCarrinho } = this.props;
+    const { gestorDoCarrinho, guardaProdutoClicado } = this.props;
 
     return (
       <main>
@@ -60,7 +60,11 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <div>
-          <Produtos produtos={ produtos } gestorDoCarrinho={ gestorDoCarrinho } />
+          <Produtos
+            produtos={ produtos }
+            gestorDoCarrinho={ gestorDoCarrinho }
+            guardaProdutoClicado={ guardaProdutoClicado }
+          />
           <Categorias atualizaCategoriaId={ this.atualizaCategoriaId } />
         </div>
       </main>
@@ -70,6 +74,7 @@ class Home extends Component {
 
 Home.propTypes = {
   gestorDoCarrinho: PropTypes.func.isRequired,
+  guardaProdutoClicado: PropTypes.func.isRequired,
 };
 
 export default Home;

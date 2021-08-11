@@ -24,9 +24,15 @@ class ShoppingCart extends Component {
 
   getCartFromLocalStorage() {
     const items = JSON.parse(localStorage.getItem('shoppingCart'));
-    this.setState({
-      items,
-    });
+    if (items) {
+      this.setState({
+        items,
+      });
+    } else {
+      this.setState({
+        items: [],
+      });
+    }
   }
 
   checkState() {

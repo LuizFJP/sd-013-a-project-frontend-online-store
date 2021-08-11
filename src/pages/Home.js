@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categorias from './Categorias';
 import Produtos from './Produtos';
@@ -35,6 +36,8 @@ class Home extends Component {
 
   render() {
     const { produtos } = this.state;
+    const { gestorDoCarrinho } = this.props;
+
     return (
       <main>
         <input
@@ -57,12 +60,16 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <div>
+          <Produtos produtos={ produtos } gestorDoCarrinho={ gestorDoCarrinho } />
           <Categorias atualizaCategoriaId={ this.atualizaCategoriaId } />
-          <Produtos produtos={ produtos } />
         </div>
       </main>
     );
   }
 }
+
+Home.propTypes = {
+  gestorDoCarrinho: PropTypes.func.isRequired,
+};
 
 export default Home;

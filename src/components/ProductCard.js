@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import AddToCart from './AddToCart';
 import './productCard.css';
 import AddToCart from '../components/componentsIndex';
 

@@ -11,12 +11,14 @@ class Home extends React.Component {
     super();
     this.state = {
       categories: [],
-      inputValue: '',
       products: [],
+      category: undefined,
+      inputValue: undefined,
     };
     this.categories = this.categories.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
   componentDidMount() {
@@ -24,15 +26,34 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
+    const { category } = this.state;
+    if (!category) {
+      this.getProduct(category, event.target.value);
+      return;
+    }
+    this.getProduct(undefined, event.target.value);
     this.setState({
       inputValue: event.target.value,
     });
-    this.getProduct();
   }
 
-  async getProduct() {
+  handleChangeCategory(event) {
     const { inputValue } = this.state;
-    const products = await getProductsFromCategoryAndQuery('', inputValue);
+    if (!inputValue) {
+      this.getProduct(event.target.value, inputValue);
+      this.setState({
+        category: event.target.value,
+      });
+      return;
+    }
+    this.getProduct(event.target.value, undefined);
+    this.setState({
+      category: event.target.value,
+    });
+  }
+
+  async getProduct(category, inputValue) {
+    const products = await getProductsFromCategoryAndQuery(category, inputValue);
     this.setState({
       products,
     });
@@ -40,7 +61,6 @@ class Home extends React.Component {
 
   async categories() {
     const categories = await getCategories();
-    console.log(categories);
     this.setState({
       categories,
     });
@@ -50,7 +70,10 @@ class Home extends React.Component {
     const { categories, products } = this.state;
     return (
       <div>
-        <CategoriesList categories={ categories } />
+        <CategoriesList
+          categories={ categories }
+          handleChangeCategory={ this.handleChangeCategory }
+        />
         <form>
           <label
             type="text"

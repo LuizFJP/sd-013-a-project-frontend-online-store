@@ -5,7 +5,6 @@ import Product from './Product';
 class ProductList extends React.Component {
   render() {
     const { products } = this.props;
-    console.log(products);
 
     if (products === undefined) {
       return (<p>Nenhum produto foi encontrado</p>);

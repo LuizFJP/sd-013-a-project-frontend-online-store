@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/componentsIndex';
 import CategoriesFilter from '../components/CategoriesFilter';
 import cartIcon from '../images/shopping_cart_black_24dp.svg';
 import './home.css';

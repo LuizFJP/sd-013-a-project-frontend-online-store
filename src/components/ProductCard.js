@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';
 import './productCard.css';
+import AddToCart from '../components/componentsIndex';
 
 class ProductCard extends Component {
   render() {
@@ -25,13 +26,10 @@ class ProductCard extends Component {
             { `Preço R$ ${price}` }
           </span>
         </Link>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => this.setLocalStorage() }
-        >
-          Adicionar ao Carrinho
-        </button>
+        <AddToCart
+          product={ product }
+          dataTestId="product-add-to-cart"
+        />
       </div>
     );
   }

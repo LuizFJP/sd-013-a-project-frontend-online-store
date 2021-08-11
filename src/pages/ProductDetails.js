@@ -1,77 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import AddToCart from '../components/AddToCart';
 
 class ProductDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      localCart: '',
-    };
-  }
-
-  componentDidMount() {
-    const localCart = JSON.parse(localStorage.getItem('shoppingCart'));
-    if (localCart) {
-      this.getLocalStorageCart(localCart);
-    }
-  }
-
-  getLocalStorageCart = (localCart) => {
-    this.setState({
-      localCart,
-    });
-  }
-
-  createNewCart = (product) => {
-    const newCart = [product];
-    product.cartQuantity = 1;
-    this.setState({
-      localCart: newCart,
-    });
-    localStorage.setItem('shoppingCart', JSON.stringify(newCart));
-  }
-
-  checkLocalCart = (product) => {
-    const localStorageCart = JSON.parse(localStorage.getItem('shoppingCart'));
-    const localProduct = localStorageCart.find((item) => product.id === item.id);
-    if (localProduct) {
-      
-    } else {
-     
-    }
-  }
-
-  // addItemToCart(product) {
-  //   if (localStorage.getItem('carrinho')) {
-  //     const currentCart = JSON.parse(localStorage.getItem('carrinho'));
-  //     let futureCart = [];
-  //     const alreadyInCart = currentCart.some((item) => product.id === item.id);
-  //     if (alreadyInCart) {
-  //       currentCart.map((item) => {
-  //         if (item.id === product.id) {
-  //           item.quantity += 1;
-  //           return item;
-  //         }
-  //         return item;
-  //       });
-  //       futureCart = [...currentCart];
-  //     } else {
-  //       product.quantity = 1;
-  //       futureCart = [...currentCart, product];
-  //     }
-  //     localStorage.setItem('carrinho', JSON.stringify(futureCart));
-  //   } else {
-  //     product.quantity = 1;
-  //     const cart = [product];
-  //     localStorage.setItem('carrinho', JSON.stringify(cart));
-  //   }
-  // }
-
-  addToCart(product) {
-    const { localCart } = this.state;
-    if (localCart) this.checkLocalCart(product);
-    this.createNewCart(product);
-  }
-
   render() {
     const { props: { location: { state } } } = this;
     const { title, price, thumbnail } = state;
@@ -83,17 +14,23 @@ class ProductDetails extends Component {
         <img alt="title" src={ thumbnail } />
         <div>
           <h2 data-testid="product-detail-name">{ title }</h2>
-          <button
-            type="button"
-            data-testid="product-detail-add-to-cart"
-            onClick={ () => this.addToCart(state) }
-          >
-            Adicionar no Carrinho
-          </button>
+          <AddToCart
+            product={ state }
+            dataTestId="product-detail-add-to-cart"
+          />
         </div>
       </section>
     );
   }
 }
+
+ProductDetails.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({}),
+  }),
+  title: PropTypes.string,
+  thumbnail: PropTypes.string,
+  price: PropTypes.number,
+}.isRequired;
 
 export default ProductDetails;

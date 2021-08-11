@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { getCategories, getProductsFromCategoryAndQuery } from '../../services/api';
+import { getCategories } from '../../services/api';
+import ProductList from '../ProductList/ProductList';
 
 export default class Categories extends Component {
   constructor(props) {
@@ -19,11 +20,8 @@ export default class Categories extends Component {
   }
 
   async handleRadioChange(e) {
-    const { selectedCategory } = this.state;
     const { target } = e;
     const { value } = target;
-
-    await getProductsFromCategoryAndQuery(selectedCategory, '');
 
     this.setState({
       selectedCategory: value,
@@ -57,6 +55,8 @@ export default class Categories extends Component {
             </label>
           </div>
         ))}
+
+        <ProductList selectedCategory={ selectedCategory } categories={ categories } />
       </div>
     );
   }

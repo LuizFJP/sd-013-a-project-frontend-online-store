@@ -9,7 +9,7 @@ class ShoppingCart extends Component {
       emptyItems: true,
       items: [],
     };
-    this.checkState = this.checkState.bind(this);
+    this.checkState = this.checkState.bind(this); 
   }
 
   shouldComponentUpdate() {

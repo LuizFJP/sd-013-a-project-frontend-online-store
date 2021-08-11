@@ -35,7 +35,6 @@ class SearchBar extends React.Component {
         </label>
         <button type="submit" data-testid="query-button">Pesquisar</button>
       </form>
-
     );
   }
 }

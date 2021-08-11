@@ -10,7 +10,6 @@ class CarShop extends React.Component {
 
   render() {
     const { location: { state: { carrinho } } } = this.props;
-    console.log(carrinho);
     if (!carrinho) {
       return (
         <div>

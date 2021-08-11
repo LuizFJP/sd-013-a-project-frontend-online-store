@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import CarShop from './pages/CarShop';
 import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
 import ListByCategory from './pages/ListByCategory';
 // Luiz Furtado
 
@@ -14,6 +15,11 @@ function App() {
         <Route exact path="/carshop" component={ CarShop } />
         <Route
           exact
+          path="/product/:id"
+        >
+          { (props) => <ProductDetails { ...props } /> }
+        </Route>
+        <Route
           path="/:category"
           render={ (props) => <ListByCategory { ...props } /> }
         />

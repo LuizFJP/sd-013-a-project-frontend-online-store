@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
   onClick = () => {
@@ -9,11 +10,8 @@ class ProductCard extends Component {
   }
 
   render() {
-    const {
-      product: {
-        price, title, thumbnail,
-      },
-    } = this.props;
+    const { product } = this.props;
+    const { price, title, thumbnail, id } = product;
 
     return (
       <div data-testid="product">
@@ -27,6 +25,18 @@ class ProductCard extends Component {
             {price}
           </span>
         </div>
+        <Link
+          type="button"
+          data-testid="product-detail-link"
+          to={ {
+            pathname: `/product/${id}`,
+            state: {
+              product,
+            },
+          } }
+        >
+          Detalhes do Produto
+        </Link>
         <button type="submit" data-testid="product-add-to-cart" onClick={ this.onClick }>
           Adicionar ao Carrinho
         </button>
@@ -38,6 +48,7 @@ class ProductCard extends Component {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     price: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     thumbnail: PropTypes.string,
   }).isRequired,

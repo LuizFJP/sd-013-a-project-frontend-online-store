@@ -8,12 +8,15 @@ class Home extends React.Component {
 
     this.state = {
       query: '',
+      categoryId: '',
       products: [],
       found: true,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQuery = this.handleQuery.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleCategoryId = this.handleCategoryId.bind(this);
   }
 
   handleQuery(event) {
@@ -22,10 +25,23 @@ class Home extends React.Component {
     });
   }
 
+  handleCategoryId(event) {
+    this.setState({
+      categoryId: event.target.id,
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const { query } = this.state;
     this.getProduct('', query);
+  }
+
+  handleClick(event) {
+    event.preventDefault();
+    const { categoryId } = this.state;
+    this.getProduct(categoryId, '');
+    console.log('xablau');
   }
 
   async getProduct(categoryId, query) {
@@ -37,10 +53,14 @@ class Home extends React.Component {
   }
 
   render() {
-    const { query, products, found } = this.state;
+    const { query, products, found, categoryId } = this.state;
     return (
       <div>
-        <CategoriesList />
+        <CategoriesList
+          handleClick={ this.handleClick }
+          handleCategoryId={ this.handleCategoryId }
+          categoryId={ categoryId }
+        />
         <ButtonAddCart />
         <SearchBar
           query={ query }

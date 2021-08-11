@@ -24,15 +24,19 @@ class CategoriesList extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { handleClick, categoryId, handleCategoryId } = this.props;
     return (
       <div>
-        <ul>
-          { categories.map((category) => (
-            <li key={ category.id } data-testid="category">
-              { category.name }
-            </li>
-          )) }
-        </ul>
+        { categories.map((category) => (
+          <button
+            type="button"
+            key={ category.id }
+            data-testid="category"
+            onClick={ handleClick }
+          >
+            { category.name }
+          </button>
+        )) }
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonAddCart, ProductList, CategoriesList, SeachBar } from '../components';
+import { ButtonAddCart, ProductList, CategoriesList, SearchBar } from '../components';
 import * as api from '../services/api';
 
 class Home extends React.Component {
@@ -9,7 +9,9 @@ class Home extends React.Component {
     this.state = {
       query: '',
       products: [],
+      found: true,
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQuery = this.handleQuery.bind(this);
     this.getProduct = this.getProduct.bind(this);
   }
@@ -20,33 +22,32 @@ class Home extends React.Component {
     });
   }
 
-  handleClick(event) {
-    // const { match: {params: { categoryId, query } } } = this.props;
-    // this.getProduct(categoryId, query);
-    console.log('aaa');
+  handleSubmit(event) {
+    event.preventDefault();
+    const { query } = this.state;
+    this.getProduct('', query);
   }
 
   async getProduct(categoryId, query) {
-    // const { id:categoryId, query } = this.props;
     const productAPI = await api.getProductsFromCategoryAndQuery(categoryId, query);
 
     this.setState({
-      products: productAPI,
+      products: productAPI.results, // coloquei .products
     });
   }
 
   render() {
-    const { query, products } = this.state;
+    const { query, products, found } = this.state;
     return (
       <div>
         <CategoriesList />
         <ButtonAddCart />
-        <SeachBar query={ query } handleQuery={ this.handleQuery } handleClick={ this.handleClick }/>
-        <ProductList
+        <SearchBar
           query={ query }
-          handleClick={ this.handleClick }
-          products={ products }
+          handleQuery={ this.handleQuery }
+          handleSubmit={ this.handleSubmit }
         />
+        <ProductList products={ products } found={ found } />
       </div>
     );
   }

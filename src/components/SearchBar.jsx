@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class SeachBar extends React.Component {
+class SearchBar extends React.Component {
   render() {
-    const { query, handleQuery, handleClick } = this.props;
+    const { query, handleQuery, handleSubmit } = this.props;
     return (
-      <div>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="Product-Search">
           <input
             type="text"
@@ -18,14 +19,19 @@ class SeachBar extends React.Component {
             type="submit"
             data-testid="query-button"
             name="Product-Search"
-            onClick={ handleClick }
           >
             Buscar:
           </button>
         </label>
-      </div>
+      </form>
     );
   }
 }
 
-export default SeachBar;
+SearchBar.propTypes = {
+  query: PropTypes.string,
+  handleQuery: PropTypes.func,
+  handleSubmit: PropTypes.func,
+}.isRequired;
+
+export default SearchBar;

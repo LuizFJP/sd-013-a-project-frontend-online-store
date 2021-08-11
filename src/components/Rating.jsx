@@ -65,7 +65,7 @@ class Rating extends React.Component {
             </label>
           </div>
           <div>
-            <input
+            <textarea
               data-testid="product-detail-evaluation"
               name="message"
               value={ message }

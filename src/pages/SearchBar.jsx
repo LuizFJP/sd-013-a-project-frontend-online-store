@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../App.css';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -23,8 +24,12 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleFormSubmit }>
-        <label htmlFor="input-search" data-testid="home-initial-message">
+      <form onSubmit={ this.handleFormSubmit } className="form-search">
+        <label
+          htmlFor="input-search"
+          data-testid="home-initial-message"
+          className="input-search"
+        >
           Digite algum termo de pesquisa ou escolha uma categoria.
           <input
             data-testid="query-input"

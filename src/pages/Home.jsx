@@ -25,12 +25,16 @@ class Home extends React.Component {
     const { products } = this.state;
     return (
       <div>
-        <SearchBar onClick={ this.fetchProducts } />
-        <Categories onClick={ this.fetchProducts } />
-        <ProductList products={ products } />
-        <Link data-testid="shopping-cart-button" to="/carshop">
-          <img src={ imgCarShop } alt="carrinho de compras" />
-        </Link>
+        <div>
+          <SearchBar onClick={ this.fetchProducts } />
+        </div>
+        <div className="middle">
+          <Categories onClick={ this.fetchProducts } />
+          <ProductList products={ products } />
+          <Link data-testid="shopping-cart-button" to="/carshop">
+            <img src={ imgCarShop } alt="carrinho de compras" />
+          </Link>
+        </div>
       </div>
     );
   }

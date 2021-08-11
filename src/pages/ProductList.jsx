@@ -7,7 +7,7 @@ class ProductList extends React.Component {
     const { products } = this.props;
 
     return (
-      <div>
+      <div className="product-list">
         {products.map(
           (product) => <ProductCard key={ product.id } product={ product } />,
         )}
@@ -19,4 +19,5 @@ class ProductList extends React.Component {
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default ProductList;

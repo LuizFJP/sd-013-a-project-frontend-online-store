@@ -31,7 +31,7 @@ class Categories extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <section>
+      <section className="category">
         {categories.map((category) => (
           <div
             tabIndex="0"
@@ -40,10 +40,12 @@ class Categories extends React.Component {
             onKeyDown={ this.handleClick }
             key={ category.id }
             data-testid="category"
+            className="category-items"
           >
             <Link
               category={ category.id }
               to={ `/${category.id}` }
+              className="link"
             >
               {category.name}
             </Link>

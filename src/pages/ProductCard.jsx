@@ -10,13 +10,12 @@ class ProductCard extends Component {
     } = this.props;
 
     return (
-      <div data-testid="product">
-        <div className="product-img">
-          <img src={ thumbnail } alt={ title } />
-        </div>
+      <div data-testid="product" className="product">
         <div className="product-info">
-          <span>{title}</span>
-          <span>
+          <img src={ thumbnail } alt={ title } className="img-product" />
+          <span className="p-info">{title}</span>
+          <span> </span>
+          <span className="value">
             R$
             {price}
           </span>

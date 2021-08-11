@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 class CardItem extends Component {
   render() {
-    const { card: { title, thumbnail, price } } = this.props;
+    const { card } = this.props;
+    const { title, thumbnail, price } = card;
     return (
       <div data-testid="product">
         <h3>{ title }</h3>

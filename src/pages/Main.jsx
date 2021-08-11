@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { SearchInput, Categories, ButtonCart, CardItem, Message } from '../components';
 import * as api from '../services/api';
 
@@ -9,6 +10,7 @@ class Main extends Component {
     this.state = {
       products: [],
       message: true,
+      search: '',
     };
   }
 
@@ -19,6 +21,7 @@ class Main extends Component {
       this.setState({
         products: result,
         message: false,
+        search,
       });
       console.log(categoryId);
     } catch (error) {
@@ -29,7 +32,7 @@ class Main extends Component {
   }
 
   render() {
-    const { products, message } = this.state;
+    const { products, message, search } = this.state;
     if (!products) return <p>Nenhum produto foi encontrado</p>;
 
     return (
@@ -45,7 +48,15 @@ class Main extends Component {
           { message
             ? <Message />
             : (products.map((product) => (
-              <CardItem key={ product.id } card={ product } />)))}
+              <div key={ product.id }>
+                <CardItem card={ product } />
+                <Link
+                  to={ { pathname: `/product/${product.id}`, state: search } }
+                  data-testid="product-detail-link"
+                >
+                  MAIS INFORMAÇÕES
+                </Link>
+              </div>)))}
         </section>
       </main>
     );

@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Produtos extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      carrinho: [],
-    };
-  }
 
 
   renderProduto = (produto) => {

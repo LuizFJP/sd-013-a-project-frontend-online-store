@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import * as API from '../services/api';
 import Categories from './Categories';
 import imgCarShop from '../image/shopping-cart_icon-icons.com_60593.svg';
-// import CarShop from './CarShop';
 
 // Rodrigo Pova, Luiz Furtado, Filipe Cândido, Felipe Chagas, Danilo Uehara
 class Home extends React.Component {

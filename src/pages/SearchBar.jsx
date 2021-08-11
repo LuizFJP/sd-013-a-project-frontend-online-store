@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import imgCarShop from '../image/shopping-cart_icon-icons.com_60593.svg';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -36,9 +34,6 @@ class SearchBar extends React.Component {
           />
         </label>
         <button type="submit" data-testid="query-button">Pesquisar</button>
-        <Link data-testid="shopping-cart-button" to="/carshop">
-          <img src={ imgCarShop } alt="carrinho de compras" />
-        </Link>
       </form>
     );
   }

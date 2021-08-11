@@ -19,6 +19,7 @@ function App() {
         >
           { (props) => <ProductDetails { ...props } /> }
         </Route>
+        <Route
           path="/:category"
           render={ (props) => <ListByCategory { ...props } /> }
         />

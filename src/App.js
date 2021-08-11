@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
@@ -17,6 +18,26 @@ export default class App extends Component {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/shopping" data-testid="shopping-cart-button">Cart</Link></li>
         </ul>
+=======
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import './App.css';
+import Home from './components/Home';
+import ShoppingCart from './components/ShoppingCart';
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Switch>
+          <Route path="/ShoppingCart" component={ShoppingCart} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
+}
+>>>>>>> main-group-15-reset
 
         <Switch>
           <Route

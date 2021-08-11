@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ProductDetails extends React.Component {
   render() {
@@ -11,6 +12,10 @@ class ProductDetails extends React.Component {
     );
   }
 }
+
+ProductDetails.propTypes = {
+  productDetails: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default ProductDetails;
 // feito pelo grupo via pair programming

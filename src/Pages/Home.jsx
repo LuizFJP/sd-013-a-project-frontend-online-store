@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import ProductList from '../Components/ProductList';
 import SearchBar from '../Components/SearchBar';
@@ -74,6 +75,10 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  setProduct: PropTypes.func.isRequired,
+};
 
 export default Home;
 // feito pelo grupo via pair programming

@@ -52,6 +52,7 @@ ProductList.propTypes = {
   resultadoDoPai: PropTypes.arrayOf(PropTypes.object).isRequired,
   // product: PropTypes.string.isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
+  setProduct: PropTypes.func.isRequired,
 };
 
 export default ProductList;

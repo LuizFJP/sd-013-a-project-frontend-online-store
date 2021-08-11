@@ -10,9 +10,6 @@ class Produtos extends React.Component {
     };
   }
 
-  addAoCarrinho = (produto) => {
-    this.setState(({carrinho}) => ({ carrinho: [...carrinho, produto] }));
-  };
 
   renderProduto = (produto) => {
     const { id, title, thumbnail, price } = produto;

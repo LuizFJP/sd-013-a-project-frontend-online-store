@@ -1,23 +1,25 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class Carrinho extends React.Component {
-  renderProduto = ({ id, title, thumbnail, price }) => (
-    <li key={ id }>
-      <p data-testid="shopping-cart-product-name">{ title }</p>
-      <img src={ thumbnail } alt={ title } />
-      <p data-testid="shopping-cart-product-quantity">1</p>
-      <p>{ price }</p>
-    </li>
-  )
+import Produto from '../components/Produto';
 
+class Carrinho extends React.Component {
   render() {
     const { produtos } = this.props;
+    const carrinhoVazio = () => (
+      <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+    );
+
+    const mostrarCarrinho = () => (
+      produtos.map((produto) => <Produto key={ produto.id } produto={ produto } />)
+    );
 
     return (
       <section>
-        <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
-        { produtos.map((produto) => this.renderProduto(produto)) }
+        { produtos[0] ? mostrarCarrinho() : carrinhoVazio() }
+        {/* <Link to="">Finalizar Compra</Link> */}
+        <button type="button">Finalizar Compra</button>
       </section>
     );
   }

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setLocalStorageData } from '../services/localStorage';
 
 export default class CartItem extends React.Component {
   constructor(props) {
@@ -9,10 +8,6 @@ export default class CartItem extends React.Component {
     this.state = {
       quant: quantity,
     };
-  }
-
-  componentDidUpdate() {
-
   }
 
   changeCart = (id, operator) => {

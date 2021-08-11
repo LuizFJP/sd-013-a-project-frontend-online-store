@@ -4,6 +4,8 @@ import './App.css';
 import CarShop from './pages/CarShop';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
+import ListByCategory from './pages/ListByCategory';
+// Luiz Furtado
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
         >
           { (props) => <ProductDetails { ...props } /> }
         </Route>
+          path="/:category"
+          render={ (props) => <ListByCategory { ...props } /> }
+        />
       </Switch>
     </BrowserRouter>
   );

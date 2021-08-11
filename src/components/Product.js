@@ -5,7 +5,7 @@ class Product extends React.Component {
   render() {
     const { dados: { title, thumbnail, price } } = this.props;
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="product-card">
         <img src={ thumbnail } alt="Imagem de produto" />
         <span>{ title }</span>
         <span>{ price }</span>

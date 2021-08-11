@@ -24,8 +24,10 @@ class ListCategory extends React.Component {
   render() {
     const { categorys } = this.state;
     return (
-      <div>
-        {categorys.map((cat) => <Category key={ cat.id } name={ cat.name } />)}
+      <div className="container-categoryJr">
+        <ul id={ categorys.id }>
+          {categorys.map((cat) => <Category key={ cat.id } name={ cat.name } />)}
+        </ul>
       </div>
     );
   }

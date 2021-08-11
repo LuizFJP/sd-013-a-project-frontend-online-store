@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ListCategory from './ListCategory';
 import ListProduct from './ListProduct';
 import * as Api from '../services/api';
+import cartImg from '../images/cart-img.svg';
 
 class HomeMessage extends React.Component {
   constructor() {
@@ -31,19 +32,28 @@ class HomeMessage extends React.Component {
     );
     return (
       <div className="App">
-        <label htmlFor="search">
-          <input id="search" data-testid="query-input" />
-        </label>
-        <button
-          data-testid="query-button"
-          onClick={ () => { this.requestProducts(); } }
-          type="submit"
-        >
-          Buscar
-        </button>
-        { botaoClicado ? <ListProduct produtos={ produtos } /> : msgInicial }
-        <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-        <ListCategory />
+        <div className="container-category">
+          <ListCategory />
+        </div>
+        <div className="container-main">
+          <div className="container-grid">
+            <input id="search" data-testid="query-input" className="search" />
+            <button
+              data-testid="query-button"
+              onClick={ () => { this.requestProducts(); } }
+              type="submit"
+              className="button-buscar"
+            >
+              Buscar
+            </button>
+            <Link to="/cart" data-testid="shopping-cart-button" className="cartImg">
+              <img src={ cartImg } />
+            </Link>
+          </div>
+          <div className="card-grid">
+            { botaoClicado ? <ListProduct produtos={ produtos } />: msgInicial }
+          </div>
+        </div>
       </div>
     );
   }

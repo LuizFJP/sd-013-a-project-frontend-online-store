@@ -1,16 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import ProductList from '../Components/ProductList';
 import SearchBar from '../Components/SearchBar';
 import SideBar from '../Components/SideBar';
+import * as Api from '../services/api';
 
 class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      resultadoDoPai: [],
+      product: '',
+      shouldDisplay: false,
+    };
+
+    this.alterarEstado = this.alterarEstado.bind(this);
+    this.filter = this.filter.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange({ target }) {
+    this.setState({
+      product: target.value,
+      shouldDisplay: target.value.length > 0,
+    });
+  }
+
+  async alterarEstado() {
+    const { product } = this.state;
+    await Api.getProductsFromCategoryAndQuery('', product)
+      .then((data) => this.setState({
+        resultadoDoPai: data.results,
+      }));
+  }
+
+  async filter(param1) {
+    const { product } = this.state;
+    await Api.getProductsFromCategoryAndQuery(param1, product)
+      .then((data) => {
+        // console.log(data.results);
+        this.setState({
+          resultadoDoPai: data.results,
+          shouldDisplay: true,
+        });
+      });
+  }
+
   render() {
+    const { resultadoDoPai, product, shouldDisplay } = this.state;
     return (
-      <div>
-        <SearchBar />
-        <Link to="/cart" data-testid="shopping-cart-button">Shopping Cart</Link>
-        <SideBar />
+      <div style={ { display: 'flex' } }>
+        <SideBar filter={ this.filter } />
+        <main style={ { display: 'flex', flexDirection: 'column' } }>
+          <div>
+            <SearchBar
+              alterarEstado={ this.alterarEstado }
+              handleChange={ this.handleChange }
+              product={ product }
+            />
+            <Link to="/cart" data-testid="shopping-cart-button">Shopping Cart</Link>
+          </div>
+          <ProductList
+            resultadoDoPai={ resultadoDoPai }
+            product={ product }
+            shouldDisplay={ shouldDisplay }
+          />
+        </main>
       </div>
     );
   }

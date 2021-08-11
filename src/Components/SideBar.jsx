@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as Api from '../services/api';
 
 class SideBar extends React.Component {
@@ -18,19 +19,29 @@ class SideBar extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { filter } = this.props;
     return (
       <ul>
         {categories.map((category) => (
           <li
-            data-testid="category"
             key={ category.id }
           >
-            {category.name}
+            <button
+              data-testid="category"
+              type="button"
+              onClick={ () => filter(category.id) }
+            >
+              {category.name }
+            </button>
           </li>))}
       </ul>
     );
   }
 }
+
+SideBar.propTypes = {
+  filter: PropTypes.func.isRequired,
+};
 
 export default SideBar;
 // feito pelo grupo via pair programming

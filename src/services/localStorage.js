@@ -7,9 +7,10 @@ export function getLocalStorageData(key) {
 export function setLocalStorageData(product) {
   const { id } = product;
   // console.log(id);
+  // const id = 'cart';
 
   const products = getLocalStorageData(id);
   const setProducts = [...products, product];
   localStorage.setItem(id, JSON.stringify(setProducts));
-  console.log(localStorage);
+  // console.log(localStorage);
 }

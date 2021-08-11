@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Rating from '../components/Rating';
 
 class ProductDetails extends React.Component {
   render() {
@@ -33,6 +34,8 @@ class ProductDetails extends React.Component {
         <div>
           <Link to="/">Voltar</Link>
         </div>
+        <h2>Avaliações</h2>
+        <Rating />
       </div>
     );
   }

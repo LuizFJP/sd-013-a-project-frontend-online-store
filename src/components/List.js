@@ -19,18 +19,19 @@ class List extends Component {
   fetchCat = async () => {
     const { callback } = this.props;
     const json = await api.getCategories();
-    const products = json
+    const list = json
       .map(({ id, name }) => (
         <li
           data-testid="category"
           onClick={ () => callback(id) }
           aria-hidden="true"
           key={ id }
+          id={ name }
         >
           { name }
         </li>
       ));
-    this.setState({ list: products, loading: false });
+    this.setState({ loading: false, list });
   }
 
   render() {

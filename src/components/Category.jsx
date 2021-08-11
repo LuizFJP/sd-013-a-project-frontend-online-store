@@ -22,6 +22,7 @@ export default class Category extends React.Component {
   render() {
     const { categories } = this.state;
     const { onClick } = this.props;
+    // console.log(categories);
     return (
       <div className="Category">
         { categories.map((c) => (

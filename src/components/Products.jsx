@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import * as api from '../services/api';
 import Category from './Category';
+import ProductDetails from './ProductDetails';
 
-export default class Products extends React.Component {
+export default class Products extends Component {
   constructor(props) {
     super(props);
 
@@ -10,12 +11,19 @@ export default class Products extends React.Component {
       products: [],
       query: '',
       category: '',
+      details: false,
+      idDetails: '',
     };
 
     this.handleOnChange = this.handleOnChange.bind(this);
     this.Products = this.Products.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleLiClick = this.handleLiClick.bind(this);
+    this.handleCard = this.handleCard.bind(this);
+  }
+
+  handleCard({ target }) {
+    this.setState({ details: true, idDetails: target.id });
   }
 
   handleOnChange(e) {
@@ -37,12 +45,16 @@ export default class Products extends React.Component {
     const { query, category } = this.state;
     await api.getProductsFromCategoryAndQuery(category, query)
       .then((products) => { this.setState({ products: products.results }); });
-    console.log(query);
-    console.log(category);
+    // console.log(query);
+    // console.log(category);
   }
 
   render() {
-    const { products } = this.state;
+    const { products, details, idDetails } = this.state;
+    const productId = products.find((product) => product.id === idDetails);
+    const renderProductId = (details) ? (<ProductDetails
+      product={ productId }
+    />) : undefined;
     return (
       <div>
         <Category onClick={ this.handleLiClick } />
@@ -67,10 +79,23 @@ export default class Products extends React.Component {
             { products.map((product) => (
               <div key={ product.id } data-testid="product">
                 <h3>{ product.title }</h3>
-                <img alt={ product.id } src={ product.thumbnail } />
+                <img
+                  alt={ product.id }
+                  src={ product.thumbnail }
+                />
                 <p>{ product.price }</p>
+                <button
+                  data-testid="product-detail-link"
+                  id={ product.id }
+                  type="button"
+                  onClick={ this.handleCard }
+                >
+                  Detalhes
+                  {' '}
+                </button>
               </div>))}
           </div>
+          { renderProductId }
         </div>
       </div>
     );

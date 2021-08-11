@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchBar extends React.Component {
   render() {
@@ -13,6 +14,9 @@ class SearchBar extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>
+        <div>
+          <Link data-testid="shopping-cart-button" to="/shopping-cart">cart</Link>
+        </div>
       </div>
     );
   }

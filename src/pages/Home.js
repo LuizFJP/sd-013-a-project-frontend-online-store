@@ -82,8 +82,8 @@ class Home extends Component {
         <div className="content">
           <Categories handleChange={ this.handleChangeRadio } />
           <CardsList
-           products={ filteredProducts }
-           searchIsCalled={ searchIsCalled }
+            products={ filteredProducts }
+            searchIsCalled={ searchIsCalled }
           />
         </div>
       </>

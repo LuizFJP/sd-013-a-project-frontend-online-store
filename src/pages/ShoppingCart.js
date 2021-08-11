@@ -9,11 +9,24 @@ class ShoppingCart extends Component {
       emptyItems: true,
       items: [],
     };
-    this.checkState = this.checkState.bind(this); 
+    this.checkState = this.checkState.bind(this);
+    this.getCartFromLocalStorage = this.getCartFromLocalStorage.bind(this);
+  }
+
+  componentDidMount() {
+    this.getCartFromLocalStorage();
   }
 
   shouldComponentUpdate() {
     this.checkState();
+    return true;
+  }
+
+  getCartFromLocalStorage() {
+    const items = JSON.parse(localStorage.getItem('shoppingCart'));
+    this.setState({
+      items,
+    });
   }
 
   checkState() {
@@ -27,10 +40,22 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    const { emptyItems } = this.state;
+    const { emptyItems, items } = this.state;
     return (
       <div>
         {emptyItems && <EmptyCart />}
+        {items.length !== 0 && items.map((item) => {
+          const { qnt, object: { title, thumbnail, price }, id } = item;
+          return (
+            <div key={ id }>
+              <img src={ thumbnail } alt={ id } />
+              <p data-testid="shopping-cart-product-name">{ title }</p>
+              <p data-testid="shopping-cart-product-quantity">{ qnt }</p>
+              <p>{ price }</p>
+              <p>{ id }</p>
+            </div>
+          );
+        })}
       </div>
     );
   }

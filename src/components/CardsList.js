@@ -8,9 +8,41 @@ class CardsList extends React.Component {
     super(props);
     this.state = {
       shoppingCart: [],
-    }
+    };
     this.populateCardList = this.populateCardList.bind(this);
     this.handleAddProduct = this.handleAddProduct.bind(this);
+  }
+
+  handleAddProduct(product) {
+    const { shoppingCart } = this.state;
+    const checkShoppingCart = shoppingCart.find(({ id }) => id === product.id);
+
+    if (!checkShoppingCart) {
+      const cartItem = {
+        qnt: 1,
+        object: product,
+        id: product.id,
+      };
+
+      this.setState((previousState) => {
+        const newState = [...previousState.shoppingCart, cartItem];
+        localStorage.setItem('shoppingCart', JSON.stringify(newState));
+
+        return {
+          shoppingCart: newState,
+        };
+      });
+    } else {
+      const newShoppingCart = shoppingCart.map((item) => {
+        if (item.id === product.id) {
+          item.qnt += 1;
+        }
+        return item;
+      });
+      this.setState({
+        shoppingCart: newShoppingCart,
+      }, () => localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart)));
+    }
   }
 
   populateCardList() {
@@ -18,70 +50,14 @@ class CardsList extends React.Component {
 
     return (
       products.map((product) => (
-      <Card key={ product.id }
-        product={ product } handleAddProduct={ this.handleAddProduct }
-      />
-    ))
+        <Card
+          key={ product.id }
+          product={ product }
+          handleAddProduct={ this.handleAddProduct }
+        />
+      ))
     );
   }
-
-  handleAddProduct (product) {
-    const checkShoppingCart = this.state.shoppingCart.find(({id}) => id === product.id);
-    console.log(checkShoppingCart);
-    if(!checkShoppingCart) {
-      const cartItem = {
-        qnt: 1,
-        object: product,
-        id: product.id,
-      }
-
-      this.setState((previousState) => {
-        const newState = [...previousState.shoppingCart, cartItem]
-        localStorage.setItem('shoppingCart', JSON.stringify(newState))
-
-        return {
-          shoppingCart : [...previousState.shoppingCart, cartItem],
-        }
-      });
-    
-     } 
-    // else {
-    //   const {shoppingCart} = this.state;
-    //   shoppingCart.find(({object}) => )
-    // }  
-  }
-
-  // handleAddProduct (product) {
-  //   const checkShoppingCart = this.state.shoppingCart.find((item) => {
-  //    console.log(item); 
-  //    return item.id === product.id
-  //   });
-    
-  //   if(!checkShoppingCart) {
-  //     const cartItem = {
-        
-  //       [product.id]:{
-  //         qnt: 1,
-  //         object: product,
-  //         id: product.id,
-  //       }
-  //     }
-
-  //     this.setState((previousState) => {
-  //       const newState = [...previousState.shoppingCart, cartItem]
-  //       localStorage.setItem('shoppingCart', JSON.stringify(newState))
-
-  //       return {
-  //         shoppingCart : [...previousState.shoppingCart, cartItem],
-  //       }
-  //     });
-    
-  //    } 
-  //   // else {
-  //   //   const {shoppingCart} = this.state;
-  //   //   shoppingCart.find(({object}) => )
-  //   // }  
-  // }
 
   render() {
     const { searchIsCalled, products } = this.props;

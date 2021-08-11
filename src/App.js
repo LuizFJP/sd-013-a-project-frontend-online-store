@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
-import SearchBar from './components/SearchBar';
+import Home from './components/Home';
 
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={ SearchBar } />
+          <Route path="/" component={ Home } />
         </Switch>
       </BrowserRouter>
     );

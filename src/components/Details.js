@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Review from './Review';
+import { Review } from './index';
 
 class Details extends Component {
   constructor(props) {
@@ -34,26 +34,28 @@ class Details extends Component {
 
     return (
       <div>
-        <span data-testid="product-detail-name">{ product.title }</span>
-        <img src={ product.thumbnail } alt="product details" />
-        <span>{ product.price }</span>
-        <h4>Especificações Técnicas</h4>
-        <Link
-          to="/shoppingcart"
-        >
-          <button type="button">
-            Adicione no Carrinho
-            <span>🛒</span>
-          </button>
-        </Link>
-        <Link
-          to="/"
-        >
-          <button type="button">
-            Voltar
-          </button>
-        </Link>
-        <Review />
+        <div>
+          <span data-testid="product-detail-name">{ product.title }</span>
+          <img src={ product.thumbnail } alt="product details" />
+          <span>{ product.price }</span>
+          <h4>Especificações Técnicas</h4>
+          <Link
+            to="/shoppingcart"
+          >
+            <button type="button">
+              Adicione no Carrinho
+              <span>🛒</span>
+            </button>
+          </Link>
+          <Link
+            to="/"
+          >
+            <button type="button">
+              Voltar
+            </button>
+          </Link>
+        </div>
+        <Review id={ product.id } />
       </div>
     );
   }

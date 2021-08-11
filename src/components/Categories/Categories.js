@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCategories } from '../../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../../services/api';
 
 export default class Categories extends Component {
   constructor(props) {
@@ -7,8 +7,10 @@ export default class Categories extends Component {
 
     this.state = {
       categories: [],
+      selectedCategory: '',
     };
 
+    this.handleRadioChange = this.handleRadioChange.bind(this);
     this.listCategories = this.listCategories.bind(this);
   }
 
@@ -16,25 +18,45 @@ export default class Categories extends Component {
     this.listCategories();
   }
 
-  async listCategories() {
-    const fetchCategories = await getCategories();
-    const mappedCategories = fetchCategories.map(({ id, name }) => (
-      <div key={ id } data-testid="category">
-        <input type="radio" value={ name } />
-        <span>{ name }</span>
-      </div>
-    ));
+  async handleRadioChange(e) {
+    const { selectedCategory } = this.state;
+    const { target } = e;
+    const { value } = target;
+
+    await getProductsFromCategoryAndQuery(selectedCategory, '');
 
     this.setState({
-      categories: mappedCategories,
+      selectedCategory: value,
+    });
+  }
+
+  async listCategories() {
+    const fetchCategories = await getCategories();
+    this.setState({
+      categories: fetchCategories,
     });
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, selectedCategory } = this.state;
     return (
       <div>
-        {categories}
+        Categoria Selecionada:
+        { selectedCategory }
+        {categories.map(({ name }) => (
+          <div key={ name }>
+            <label htmlFor={ name }>
+              <input
+                id={ name }
+                type="radio"
+                name="categories"
+                value={ name }
+                onChange={ this.handleRadioChange }
+              />
+              <span>{name}</span>
+            </label>
+          </div>
+        ))}
       </div>
     );
   }

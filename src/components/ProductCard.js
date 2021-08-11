@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './productCard.css';
 
 class ProductCard extends Component {
   render() {
@@ -33,5 +35,14 @@ class ProductCard extends Component {
     );
   }
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired,
+};
 
 export default ProductCard;

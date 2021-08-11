@@ -1,0 +1,19 @@
+.productList {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.homeScreen {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchMsg {
+  width: 100%;
+  text-align: center;
+}
+
+.notFound {
+  width: 100%;
+  text-align: center;
+}

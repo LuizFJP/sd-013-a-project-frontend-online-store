@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import './categoriesFilter.css';
 
 class CategoriesFilter extends Component {
   constructor(props) {
@@ -27,13 +28,15 @@ class CategoriesFilter extends Component {
     const { onChange } = this.props;
 
     return (
-      <aside>
-        <ol>
-          Categorias:
+      <aside className="asideFilter">
+        <p>Categorias:</p>
+        <nav className="asideNav">
           {
             categorias.map((category) => (
-              <li key={ category.id } data-testid="category">
+              <label htmlFor={ category.name } key={ category.id }>
                 <input
+                  // Agradeço ao meu amigo Josué por me ajudar a validar este requisito
+                  data-testid="category"
                   type="radio"
                   id={ category.name }
                   name="categoria"
@@ -41,10 +44,10 @@ class CategoriesFilter extends Component {
                   onChange={ onChange }
                 />
                 {category.name}
-              </li>
+              </label>
             ))
           }
-        </ol>
+        </nav>
       </aside>
     );
   }

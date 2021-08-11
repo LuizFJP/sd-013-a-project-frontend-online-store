@@ -1,0 +1,31 @@
+.inputHome {
+  display: flex;
+  margin-top:10px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.inputHome div {
+  display: flex;
+  width: 100%;
+}
+
+.inputHome input {
+  height: 30px;
+  width: 80%;
+  border-radius: 50px;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+
+.inputHome button {
+  height: 35px;
+  width: 100px;
+  margin: 0 10px 0 10px;
+  border-radius: 50px;
+}
+
+.shoppingCart {
+  width: 35px;
+}

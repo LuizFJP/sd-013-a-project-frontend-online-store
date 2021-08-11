@@ -1,0 +1,26 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  margin: 5px;
+  background-color: rgb(212, 212, 212);
+}
+
+.product-card a {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card a img {
+  width: 200px;
+  align-self: center;
+}
+
+.product-card a h2 {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.product-card a span {
+  margin: 10px 0 10px 10px;
+}

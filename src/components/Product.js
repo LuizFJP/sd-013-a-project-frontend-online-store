@@ -24,6 +24,11 @@ class Product extends React.Component {
             DETALHES
           </h2>
         </Link>
+        <Link to={ { pathname: '/ShoppingCart', state: { product } } }>
+          <h2 data-testid="product-add-to-cart">
+            ADICIONAR AO CARRINHO
+          </h2>
+        </Link>
       </div>
     );
   }

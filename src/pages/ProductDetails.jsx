@@ -4,22 +4,22 @@ import { Link } from 'react-router-dom';
 import imgCarShop from '../image/shopping-cart_icon-icons.com_60593.svg';
 
 class ProductDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      carrinho: [], // coloquei o this.state pra poder ter acesso ao link do carrinho de compras
-    };
-  }
-
-  // onClick = () => {
-  //   // e.preventDefault();
-  //   const { addToCart, product } = this.props; // entender de que forma posso usar isso
-  //   addToCart(product);
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     carrinho: [], // coloquei o this.state pra poder ter acesso ao link do carrinho de compras
+  //   };
   // }
+
+  onClick = () => {
+    const { addToCart, product } = this.props;
+    console.log(addToCart);
+    addToCart(product); // entender de que forma posso usar isso
+  }
 
   render() {
     const { location: { state: { product } } } = this.props;
-    const { carrinho } = this.state;
+    // const { carrinho } = this.state;
     const { price, title, thumbnail, attributes } = product;
     return (
       <div>
@@ -61,15 +61,6 @@ class ProductDetails extends React.Component {
         </div>
         <div>
           { /* coloquei o link pra rotacionar na página carShop */}
-          <Link
-            data-testid="shopping-cart-button"
-            to={
-              { pathname: '/carshop',
-                state: { carrinho } }
-            }
-          >
-            <img src={ imgCarShop } alt="carrinho de compras" />
-          </Link>
         </div>
       </div>
     );

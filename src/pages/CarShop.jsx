@@ -10,7 +10,7 @@ class CarShop extends React.Component {
 
   render() {
     const { location: { state: { carrinho } } } = this.props;
-    if (carrinho.length === 0) {
+    if (!carrinho.length) {
       return (
         <div>
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>

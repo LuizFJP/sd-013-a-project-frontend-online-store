@@ -38,10 +38,9 @@ class Home extends React.Component {
         <ProductList products={ products } addToCart={ this.addToCart } />
         <Link
           data-testid="shopping-cart-button"
-          to={
-            { pathname: '/carshop',
-              state: { carrinho } }
-          }
+          to={ { pathname: '/carshop',
+            state: { carrinho },
+          } }
         >
           <img src={ imgCarShop } alt="carrinho de compras" />
         </Link>

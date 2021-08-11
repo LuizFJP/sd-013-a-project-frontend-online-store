@@ -29,10 +29,10 @@ class ProductList extends Component {
           data-testid="product-detail-link"
         >
           <h2>{res.title}</h2>
-          <img src={ res.thumbnail } alt={ res.title } />
-          <span>{res.price}</span>
-          <span>{res.category_id}</span>
         </Link>
+        <img src={ res.thumbnail } alt={ res.title } />
+        <span>{res.price}</span>
+        <span>{res.category_id}</span>
       </li>)));
   }
 

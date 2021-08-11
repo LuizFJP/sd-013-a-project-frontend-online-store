@@ -38,8 +38,8 @@ export default class Home extends React.Component {
 
   onChange = ({ target }) => {
     const { value, name } = target;
-    console.log('value', value);
-    console.log('name', name);
+    // console.log('value', value);
+    // console.log('name', name);
     this.setState({
       [name]: value,
     });

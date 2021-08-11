@@ -1,12 +1,12 @@
 export function getLocalStorageData(key) {
   const products = JSON.parse(localStorage.getItem(key)) || [];
-  console.log(products);
+  // console.log(products);
   return products;
 }
 
 export function setLocalStorageData(product) {
   const { id } = product;
-  console.log(id);
+  // console.log(id);
 
   const products = getLocalStorageData(id);
   const setProducts = [...products, product];

@@ -11,7 +11,7 @@ class Produtos extends React.Component {
   }
 
   addAoCarrinho = (produto) => {
-    this.setState((state) => ({ carrinho: [...state.carrinho, produto] }));
+    this.setState(({carrinho}) => ({ carrinho: [...carrinho, produto] }));
   };
 
   renderProduto = (produto) => {

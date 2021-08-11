@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 class CategorieButton extends Component {
   render() {
-    const { categorie } = this.props
+    const { categorie, handleSelectedCategory } = this.props
     return (
-      <div data-testid="category">
+      <div data-testid="category" onClick={ handleSelectedCategory }>
         { categorie.name }
       </div>
     );

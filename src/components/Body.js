@@ -12,9 +12,11 @@ class Body extends Component {
       searchbarText: '',
       categories: [],
       storeItems: [],
+      selectedCategory: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSelectedCategory = this.handleSelectedCategory.bind(this);
   }
 
   componentDidMount() {
@@ -31,9 +33,15 @@ class Body extends Component {
     });
   }
 
+  handleSelectedCategory({ target }) {
+    this.setState({
+      selectedCategory:target.id,
+    })
+  }
+
   handleClick() {
-    const { searchbarText } = this.state;
-    getProductsFromCategoryAndQuery(false, searchbarText)
+    const { searchbarText, selectedCategory } = this.state;
+    getProductsFromCategoryAndQuery(selectedCategory, searchbarText)
       .then((r) => {
         this.setState({ storeItems: r.results });
       });
@@ -61,7 +69,7 @@ class Body extends Component {
         </div>
         <div>
           { storeItems
-            .map((item) => <ProductCard key={ item.title } id={ item.id }
+            .map((item) => <ProductCard key={ item.title } id={ item.id } onClick={ this.handleSelectedCategory }
               item={ item }
             />)}
         </div>

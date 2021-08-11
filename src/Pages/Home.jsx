@@ -49,6 +49,8 @@ class Home extends React.Component {
 
   render() {
     const { resultadoDoPai, product, shouldDisplay } = this.state;
+    const { setProduct } = this.props;
+
     return (
       <div style={ { display: 'flex' } }>
         <SideBar filter={ this.filter } />
@@ -65,6 +67,7 @@ class Home extends React.Component {
             resultadoDoPai={ resultadoDoPai }
             product={ product }
             shouldDisplay={ shouldDisplay }
+            setProduct={ setProduct }
           />
         </main>
       </div>

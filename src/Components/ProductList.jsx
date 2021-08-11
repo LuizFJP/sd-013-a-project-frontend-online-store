@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductList extends Component {
@@ -16,13 +17,22 @@ class ProductList extends Component {
   );
 
   ifResult = () => {
-    const { resultadoDoPai } = this.props;
+    const { resultadoDoPai, setProduct } = this.props;
     return (resultadoDoPai.map((res) => (
-      <li data-testid="product" key={ res.id }>
-        <h2>{res.title}</h2>
-        <img src={ res.thumbnail } alt={ res.title } />
-        <span>{res.price}</span>
-        <span>{res.category_id}</span>
+      <li
+        data-testid="product"
+        key={ res.id }
+      >
+        <Link
+          to="/details"
+          onClick={ () => setProduct(res) }
+          data-testid="product-detail-link"
+        >
+          <h2>{res.title}</h2>
+          <img src={ res.thumbnail } alt={ res.title } />
+          <span>{res.price}</span>
+          <span>{res.category_id}</span>
+        </Link>
       </li>)));
   }
 

@@ -27,10 +27,10 @@ class Main extends Component {
     }
   }
 
-  sendToApp = (...objProduct) => {
+  sendToApp = (objProduct) => {
     const { callBack } = this.props;
     callBack(objProduct);
-    // console.log(objProduct);
+    console.log(objProduct, "main");
   };
 
   render() {

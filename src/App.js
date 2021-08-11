@@ -5,21 +5,20 @@ import { SearchInput, ShoppingCart } from './components';
 import Main from './pages/Main';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      productCart: {},
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     productCart: [],
+  //   };
+  // }
 
   addToCart = (objProducts) => {
-    this.setState({
-      productCart: objProducts,
-    });
+    this.productCart = [...this.productCart, objProducts];
   };
 
   render() {
-    const { productCart } = this.state;
+    // const { productCart } = this.state;
+    console.log(this.productCart);
     return (
       <BrowserRouter>
         <Switch>
@@ -27,7 +26,7 @@ class App extends Component {
             <Main callBack={ this.addToCart } />
           </Route>
           <Route path="/mycart">
-            <ShoppingCart product={ productCart } />
+            <ShoppingCart product={ this.productCart } />
           </Route>
           {/* <Route exact path="/" component={ Main } />
           <Route path="/mycart" component={ ShoppingCart } />

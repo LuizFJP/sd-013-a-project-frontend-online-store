@@ -1,0 +1,9 @@
+.buttons {
+  flex-direction: column;
+  width: 250px;
+}
+
+.button {
+  margin-left: 10px;
+  width: 250px;
+}

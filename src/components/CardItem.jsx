@@ -14,31 +14,32 @@ class CardItem extends Component {
     const title = target.parentNode.firstChild.innerText;
     const img = target.parentNode.firstChild.nextSibling.getAttribute('src');
     const price = target.parentNode.firstChild.nextSibling.nextSibling.innerText;
-    console.log(title);
+    // console.log(title);
+    const objProduct = {
+      title,
+      img,
+      price,
+    };
     this.setState({
-      objProduct: {
-        title,
-        img,
-        price,
-      },
+      objProduct,
     });
     const { sendToMain } = this.props;
-    const { objProduct } = this.state;
     sendToMain(objProduct);
-    // console.log(objProduct.title);
+    console.log(objProduct);
   }
 
   render() {
-    const { card: { title, thumbnail, price } } = this.props;
+    const { card } = this.props;
+    const { title, thumbnail, price } = card;
     return (
       <div data-testid="product">
-        <h3 ref={ this.title }>{ title }</h3>
-        <img src={ thumbnail } alt={ title } />
-        <p>{ price }</p>
+        <h3 ref={this.title}>{title}</h3>
+        <img src={thumbnail} alt={title} />
+        <p>{price}</p>
         <button
           type="button"
           data-testid="product-add-to-car"
-          onClick={ this.handleClick }
+          onClick={this.handleClick}
         >
           Adicionar ao carrinho
         </button>

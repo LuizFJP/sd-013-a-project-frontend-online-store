@@ -30,5 +30,4 @@ Details.propTypes = {
   handleClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
   product: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-
 };

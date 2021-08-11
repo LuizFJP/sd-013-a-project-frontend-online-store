@@ -35,11 +35,9 @@ class Home extends React.Component {
     }
   }
 
-  searchCategory = async (id) => {
-    this.setState({
-      selectCategory: id,
-    });
-    this.fetchApi();
+  searchCategory = (id) => {
+    console.log(id);
+    this.setState({ selectCategory: id }, () => this.fetchApi());
   }
 
   render() {

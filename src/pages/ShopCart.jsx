@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getLocalStorageData } from '../services/localStorage';
+import CartItem from '../components/CartItem';
 
 export default class ShopCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-    };
-  }
-
   componentDidMount() {
     this.getShoppingList();
   }
 
   getShoppingList = () => {
     const keys = Object.keys(localStorage);
+    const emptyMessage = (
+      <p
+        data-testid="shopping-cart-empty-message"
+      >
+        Seu carrinho está vazio
+      </p>);
     const products = keys.map((key) => getLocalStorageData(key));
-    this.setState({
-      items: products,
-    });
+    // console.log(products);
+    const cart = products.map((product) => (
+      <CartItem
+        key={ product[0].id }
+        product={ product[0] }
+        quantity={ product.length }
+      />
+    ));
+
+    return products.length !== 0 ? cart : emptyMessage;
   };
 
   render() {
-    const { items } = this.state;
     return (
-      <>
-        {items
-          ? items.map((el, index) => (
-            <div key={ index }>
-              <h1 data-testid="shopping-cart-product-name">{ el.title }</h1>
-              <img src={ el.thumbnail } alt="" />
-            </div>
-          ))
-          : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> }
+      <div>
+        <ul>
+          { this.getShoppingList() }
+        </ul>
         <Link to="/">Voltar</Link>
-      </>
+      </div>
     );
   }
 }

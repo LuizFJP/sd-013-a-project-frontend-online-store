@@ -11,7 +11,11 @@ function App() {
       <BrowserRouter>
         <Route exact path="/" render={ () => <Home /> } />
         <Route exact path="/cart" render={ () => <ShopCart /> } />
-        <Route exact path="/productdata/:id" render={ (props) => <ProductDetails {...props} /> } />
+        <Route
+          exact
+          path="/productdata/:id"
+          render={ (props) => <ProductDetails { ...props } /> }
+        />
       </BrowserRouter>
     </div>
   );

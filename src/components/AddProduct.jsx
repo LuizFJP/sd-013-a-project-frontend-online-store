@@ -5,7 +5,7 @@ import { setLocalStorageData } from '../services/localStorage';
 export default class AddProduct extends React.Component {
   handleClick = () => {
     const { data } = this.props;
-    console.log(data);
+    // console.log(data);
     setLocalStorageData(data);
   }
 

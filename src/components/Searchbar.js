@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Searchbar extends Component {
   render() {
-    const { textoSearchbar, handleChange } = this.props;
+    const { textoSearchbar, handleChange, handleClick } = this.props;
     return (
       <div>
         <input
@@ -11,7 +11,15 @@ class Searchbar extends Component {
           name="searchbarText"
           value={ textoSearchbar }
           onChange={ handleChange }
+          data-testid="query-input"
         />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ () => handleClick() }
+        >
+          Buscar
+        </button>
       </div>
     );
   }

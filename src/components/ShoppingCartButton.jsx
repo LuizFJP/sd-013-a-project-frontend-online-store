@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 import { getLocalStorageData } from '../services/localStorage';
-
+// import { AiOutlineShoppingCart } from 'react-icons'
 export default class ShoppingCartButton extends React.Component {
   data = () => {
     const keys = Object.keys(localStorage);
@@ -20,7 +21,7 @@ export default class ShoppingCartButton extends React.Component {
             data-testid="shopping-cart-button"
             type="button"
           >
-            Shopping Cart
+            <FaShoppingCart />
           </button>
         </Link>
         <span data-testid="shopping-cart-size">{ this.data() }</span>

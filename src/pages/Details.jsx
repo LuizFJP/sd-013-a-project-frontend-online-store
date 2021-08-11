@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../style.css/details.css';
 
 export default class Details extends Component {
   render() {
-    const { handleClose, show, children, product} = this.props;
+    const { handleClose, show, product } = this.props;
     const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
     return (
       <div className={ showHideClassName }>
         <section className="modal-main">
           <img src={ product.thumbnail } alt={ product.title } />
-          <p 
-          data-testid="product-detail-name">
+          <p
+            data-testid="product-detail-name"
+          >
             {`Produto:  ${product.title} `}
-            </p>
+          </p>
           <p>{`Valor: ${product.price} `}</p>
-          {/* { children } */}
+
           <button type="button" onClick={ handleClose } className="button-close">
             Close
           </button>
@@ -24,3 +26,9 @@ export default class Details extends Component {
     );
   }
 }
+Details.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
+  product: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+
+};

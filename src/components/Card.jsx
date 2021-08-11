@@ -9,16 +9,16 @@ class Card extends React.Component {
 
     this.state = {
       show: false,
-      product:{}
+      product: {},
     };
   }
 
   showModal = (e) => {
     console.log(e);
-    this.setState({ 
+    this.setState({
       show: true,
-      product:e
-     });
+      product: e,
+    });
   };
 
   hideModal = () => {
@@ -37,16 +37,9 @@ class Card extends React.Component {
               <img src={ result.thumbnail } alt={ result.title } />
               <p>{`Produto:  ${result.title} `}</p>
               <p>{`Valor: ${result.price} `}</p>
-
-              <Details
-                show={ show }
-                handleClose={ this.hideModal }
-                product={ product }
-              />
-
               <div>
                 <button
-                  data-testid='product-detail-link'
+                  data-testid="product-detail-link"
                   type="button"
                   onClick={ () => this.showModal(result) }
                 >
@@ -55,7 +48,13 @@ class Card extends React.Component {
 
               </div>
             </div>
+
           ))}
+        { show && <Details
+          show={ show }
+          handleClose={ this.hideModal }
+          product={ product }
+        />}
       </div>
     );
   }

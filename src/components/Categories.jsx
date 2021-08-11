@@ -37,11 +37,10 @@ class Categories extends React.Component {
             .map((categorie) => (
               <li
                 key={ categorie.id }
-                data-testid="category"
                 className="button-Categorie"
-
               >
                 <button
+                  data-testid="category"
                   onClick={ () => this.UpdateProduct(categorie.id) }
                   type="button"
                 >

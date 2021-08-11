@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import Product from './Product';
-// Agradecimentos ao Josue por me ajudar com 
+// Agradecimentos ao Josue por me ajudar com
 // a lógica de renderização condicional. - Janovicci
 
 class ListProduct extends React.Component {

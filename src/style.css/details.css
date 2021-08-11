@@ -4,15 +4,15 @@
   left: 0;
   position: fixed;
   top: 0;
-  width:100%;
+  width: 100%;
 }
 
 .modal-main {
   background: white;
   height: auto;
-  left:50%;
-  position:fixed;
-  top:50%;
+  left: 50%;
+  position: fixed;
+  top: 50%;
   transform: translate(-50%,-50%);
   width: 80%;
 }
@@ -25,6 +25,6 @@
   display: none;
 }
 
-.button-close { 
+.button-close {
   margin-left: 50%;
 }

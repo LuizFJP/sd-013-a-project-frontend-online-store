@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Category extends React.Component {
   render() {
     const { data, data: { id }, handleChange } = this.props;
+    console.log(data);
     return (
       <label htmlFor={ id }>
         <br />
@@ -19,5 +21,13 @@ class Category extends React.Component {
     );
   }
 }
+
+Category.propTypes = {
+  data: PropTypes.object.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default Category;

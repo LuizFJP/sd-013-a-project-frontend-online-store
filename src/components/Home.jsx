@@ -12,12 +12,12 @@ class Home extends React.Component {
     this.state = {
       categories: [],
       products: [],
-      inputValue: undefined,
       category: undefined,
+      inputValue: undefined,
     };
     this.categories = this.categories.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
@@ -26,23 +26,33 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
-    const id = event.target.value;
+    const { category } = this.state;
+    if (!category) {
+      this.getProduct(category, event.target.value);
+      return;
+    }
+    this.getProduct(undefined, event.target.value);
     this.setState({
-      inputValue: id,
+      inputValue: event.target.value,
     });
-    this.getProduct(undefined, id);
   }
 
-  handleChangeCategory(e) {
-    const id = e.target.value;
+  handleChangeCategory(event) {
+    const { inputValue } = this.state;
+    if (!inputValue) {
+      this.getProduct(event.target.value, inputValue);
+      this.setState({
+        category: event.target.value,
+      });
+      return;
+    }
+    this.getProduct(event.target.value, undefined);
     this.setState({
-      category: id,
+      category: event.target.value,
     });
-    this.getProduct(id, undefined);
   }
 
-  async getProduct() {
-    const { inputValue, category } = this.state;
+  async getProduct(category, inputValue) {
     const products = await getProductsFromCategoryAndQuery(category, inputValue);
     this.setState({
       products,

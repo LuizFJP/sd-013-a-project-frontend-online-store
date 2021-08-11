@@ -25,6 +25,7 @@ class CategoriesList extends React.Component {
 
 CategoriesList.propTypes = {
   categories: PropTypes.arrayOf(Object).isRequired,
+  handleChangeCategory: PropTypes.func.isRequired,
 };
 
 export default CategoriesList;

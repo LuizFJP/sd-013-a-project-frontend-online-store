@@ -10,11 +10,13 @@ export default class AddProduct extends React.Component {
   }
 
   render() {
+    const { testId } = this.props;
+
     return (
       <div>
         <button
           type="button"
-          data-testid="product-add-to-cart"
+          data-testid={ testId }
           onClick={ () => this.handleClick() }
         >
           Adicione ao carrinho
@@ -24,6 +26,9 @@ export default class AddProduct extends React.Component {
   }
 }
 
+const { arrayOf, string } = PropTypes;
+
 AddProduct.propTypes = {
-  data: PropTypes.arrayOf,
+  data: arrayOf,
+  testId: string,
 }.isRequired;

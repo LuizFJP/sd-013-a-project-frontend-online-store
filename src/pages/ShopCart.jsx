@@ -29,12 +29,18 @@ export default class ShopCart extends Component {
     return products.length !== 0 ? cart : emptyMessage;
   };
 
+  clearCart = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   render() {
     return (
       <div>
         <ul>
           { this.getShoppingList() }
         </ul>
+        <button type="button" onClick={ this.clearCart }>Limpar Carrinho</button>
         <Link to="/">Voltar</Link>
       </div>
     );

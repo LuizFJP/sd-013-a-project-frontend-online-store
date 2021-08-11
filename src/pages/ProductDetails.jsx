@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import AddProduct from '../components/AddProduct';
 
 export default class ProductDetails extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ export default class ProductDetails extends React.Component {
             <h3>Especificações Técnicas</h3>
             <p>{product.plain_text}</p>
           </div>
+          <AddProduct data={ data } testId="product-detail-add-to-cart" />
         </section>
       </main>
     );

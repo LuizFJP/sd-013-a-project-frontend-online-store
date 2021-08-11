@@ -10,26 +10,28 @@ class CarShop extends React.Component {
 
   render() {
     const { location: { state: { carrinho } } } = this.props;
-    if (!carrinho) {
+    if (carrinho.length === 0) {
       return (
         <div>
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
-
+          <Link to="/">Voltar</Link>
         </div>
       );
     }
     return (
-      <ul>
-        { carrinho.map((product) => (
-          <li data-testid="shopping-cart-product-name" key={ product.id }>
-            {product.title}
-            <span data-testid="shopping-cart-product-quantity">
-              1
-            </span>
-          </li>
-        ))}
+      <div>
+        <ul>
+          { carrinho.map((product) => (
+            <li data-testid="shopping-cart-product-name" key={ product.id }>
+              {product.title}
+              <span data-testid="shopping-cart-product-quantity">
+                1
+              </span>
+            </li>
+          ))}
+        </ul>
         <Link to="/">Voltar</Link>
-      </ul>
+      </div>
     );
   }
 }

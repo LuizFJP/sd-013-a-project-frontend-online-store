@@ -11,12 +11,21 @@ class HomeMessage extends React.Component {
     this.state = {
       produtos: [],
       botaoClicado: false,
+      categoryId: '',
     };
   }
 
+  handleChange = ({ target }) => {
+    this.setState({
+      categoryId: target.value,
+    }, () => { this.requestProducts(); });
+  }
+
   async requestProducts() {
+    const { categoryId } = this.state;
     const search = document.getElementById('search').value;
-    const api = (await Api.getProductsFromCategoryAndQuery('', search));
+    const api = (await Api
+      .getProductsFromCategoryAndQuery(categoryId, search));
     this.setState({
       produtos: api.results,
       botaoClicado: true,
@@ -33,7 +42,7 @@ class HomeMessage extends React.Component {
     return (
       <div className="App">
         <div className="container-category">
-          <ListCategory />
+          <ListCategory onClick={ this.handleChange } />
         </div>
         <div className="container-main">
           <div className="container-grid">

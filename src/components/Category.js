@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Category extends React.Component {
   render() {
-    const { name, id } = this.props;
+    const { name, id, onClick } = this.props;
     return (
       <li className="category-item">
         <label key={ id } htmlFor={ id }>
@@ -13,6 +13,7 @@ class Category extends React.Component {
             name="categoryId"
             id={ id }
             value={ id }
+            onClick={ onClick }
           />
           { name }
         </label>

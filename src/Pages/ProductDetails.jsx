@@ -18,4 +18,3 @@ ProductDetails.propTypes = {
 };
 
 export default ProductDetails;
-// feito pelo grupo via pair programming

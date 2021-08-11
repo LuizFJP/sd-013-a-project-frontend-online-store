@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
-import ProductCard from '../components/componentsIndex';
-import CategoriesFilter from '../components/CategoriesFilter';
+import { ProductCard, CategoriesFilter } from '../components/componentsIndex';
 import cartIcon from '../images/shopping_cart_black_24dp.svg';
 import './home.css';
 import './input.css';

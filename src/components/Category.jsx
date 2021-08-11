@@ -23,7 +23,7 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  data: PropTypes.object.shape({
+  data: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
